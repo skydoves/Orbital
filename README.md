@@ -8,7 +8,7 @@
 </p><br>
 
 <p align="center">
-🪐 Jetpack Compose animation library such as movement, transformation, and shared element transition.
+🪐 Jetpack Compose animation library that allows you to implement animations such as shared element transition.
 </p><br>
 
 <p align="center">
