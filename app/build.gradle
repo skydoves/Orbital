@@ -1,0 +1,60 @@
+import com.skydoves.orbitary.Configuration
+import com.skydoves.orbitary.Dependencies
+import com.skydoves.orbitary.Versions
+
+plugins {
+  id 'com.android.application'
+  id 'org.jetbrains.kotlin.android'
+}
+
+android {
+  compileSdkVersion Configuration.compileSdk
+  defaultConfig {
+    applicationId "com.skydoves.orbitarydemo"
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.targetSdk
+    versionCode Configuration.versionCode
+    versionName Configuration.versionName
+  }
+
+  lintOptions {
+    abortOnError false
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion Versions.COMPOSE_COMPILER
+  }
+
+  buildFeatures {
+    compose true
+  }
+
+  packagingOptions {
+    excludes += "/META-INF/AL2.0"
+    excludes += "/META-INF/LGPL2.1"
+  }
+}
+
+dependencies {
+  implementation project(":orbitary")
+
+  implementation Dependencies.material
+  implementation Dependencies.composeUI
+  implementation Dependencies.composeActivity
+  implementation Dependencies.composeMaterial
+  implementation Dependencies.composeMaterialIcon
+  implementation Dependencies.composeFoundation
+  implementation Dependencies.composeFoundationLayout
+  implementation Dependencies.composeAnimation
+  implementation Dependencies.composeRuntime
+  implementation Dependencies.composeTooling
+  implementation Dependencies.composeConstraintLayout
+  implementation Dependencies.landscapistGlide
+}
+
+apply from: "$rootDir/spotless.gradle"

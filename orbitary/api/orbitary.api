@@ -1,0 +1,27 @@
+public final class com/skydoves/orbitary/AnimateModifiersKt {
+	public static final fun animateSharedElementTransition (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbitary/OrbitaryScope;Landroidx/compose/animation/core/AnimationSpec;Landroidx/compose/animation/core/AnimationSpec;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbitary/AnimateMovementKt {
+	public static final fun animateMovement (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbitary/OrbitaryScope;Landroidx/compose/animation/core/AnimationSpec;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbitary/AnimateTransformationKt {
+	public static final fun animateTransformation (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbitary/OrbitaryScope;Landroidx/compose/animation/core/AnimationSpec;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbitary/OrbitaryKt {
+	public static final fun Orbitary (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Orbitary (Landroidx/compose/ui/Modifier;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/skydoves/orbitary/OrbitaryScope : androidx/compose/ui/layout/LookaheadLayoutScope {
+	public static final field $stable I
+	public fun intermediateLayout (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function4;)Landroidx/compose/ui/Modifier;
+	public fun onPlaced (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbitary/RememberMovablesKt {
+	public static final fun rememberContentWithOrbitaryScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)Lkotlin/jvm/functions/Function3;
+}
+

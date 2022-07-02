@@ -1,0 +1,65 @@
+import com.skydoves.orbitary.Configuration
+import com.skydoves.orbitary.Dependencies
+import com.skydoves.orbitary.Versions
+
+plugins {
+  id 'com.android.library'
+  id 'org.jetbrains.kotlin.android'
+  id 'org.jetbrains.dokka'
+  id 'binary-compatibility-validator'
+}
+
+ext {
+  PUBLISH_GROUP_ID = Configuration.artifactGroup
+  PUBLISH_ARTIFACT_ID = 'orbitary'
+  PUBLISH_VERSION = rootVersionName
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
+
+android {
+  compileSdkVersion Configuration.compileSdk
+  defaultConfig {
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.targetSdk
+  }
+
+  buildFeatures {
+    compose true
+    buildConfig false
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion Versions.COMPOSE_COMPILER
+  }
+
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+
+  lintOptions {
+    abortOnError false
+  }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+  kotlinOptions.freeCompilerArgs += [
+    "-Xexplicit-api=strict",
+    "-Xopt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+  ]
+}
+
+dependencies {
+  implementation Dependencies.composeUI
+  implementation Dependencies.composeRuntime
+  implementation Dependencies.composeMaterial
+  implementation Dependencies.composeFoundation
+  implementation Dependencies.composeTooling
+}
+
+apply from: "$rootDir/spotless.gradle"
