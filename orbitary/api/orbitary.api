@@ -1,9 +1,9 @@
-public final class com/skydoves/orbitary/AnimateModifiersKt {
-	public static final fun animateSharedElementTransition (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbitary/OrbitaryScope;Landroidx/compose/animation/core/AnimationSpec;Landroidx/compose/animation/core/AnimationSpec;)Landroidx/compose/ui/Modifier;
-}
-
 public final class com/skydoves/orbitary/AnimateMovementKt {
 	public static final fun animateMovement (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbitary/OrbitaryScope;Landroidx/compose/animation/core/AnimationSpec;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbitary/AnimateSharedElementTransitionKt {
+	public static final fun animateSharedElementTransition (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbitary/OrbitaryScope;Landroidx/compose/animation/core/AnimationSpec;Landroidx/compose/animation/core/AnimationSpec;)Landroidx/compose/ui/Modifier;
 }
 
 public final class com/skydoves/orbitary/AnimateTransformationKt {
