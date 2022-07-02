@@ -29,7 +29,7 @@ dependencies {
 }
 ```
 
-> **Note**: This is an experimental library that demonstares various animations with Jetpack Compose. Please make sure that your project uses Jetpack Compose `1.3.0-alpha01`, Compose Compiler `1.2.0`, and Kotlin `1.7.0`.
+> **Note**: This is an experimental library that demonstrates various animations with Jetpack Compose. Please make sure that your project uses Jetpack Compose `1.3.0-alpha01`, Compose Compiler `1.2.0`, and Kotlin `1.7.0`.
 
 ## Usage
 
