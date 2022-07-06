@@ -19,6 +19,7 @@ package com.skydoves.orbitarydemo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.SpringSpec
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -50,8 +51,9 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       OrbitaryTheme {
-        OrbitarySharedElementTransitionExample()
-//       OrbitarTransformationExample()
+        OrbiraySharedElementTransitionExample()
+//        OrbitarySharedElementTransitionExample()
+//        OrbitarTransformationExample()
 //        OrbitarMovementExample()
       }
     }
@@ -68,7 +70,7 @@ private fun OrbitarTransformationExample() {
       } else {
         Modifier.size(100.dp, 220.dp)
       }.animateTransformation(this, transformationSpec),
-      imageModel = ItemUtils.urls[0],
+      imageModel = MockUtils.getMockPoster().poster,
       contentScale = ContentScale.Fit
     )
   }
@@ -129,10 +131,54 @@ private fun OrbitarMovementExample() {
 }
 
 @Composable
-private fun OrbitarySharedElementTransitionExample() {
+private fun OrbiraySharedElementTransitionExample() {
+  var isTransformed by rememberSaveable { mutableStateOf(false) }
+  val item = MockUtils.getMockPosters()[3]
+  val poster = rememberContentWithOrbitaryScope {
+    GlideImage(
+      modifier = if (isTransformed) {
+        Modifier.fillMaxSize()
+      } else {
+        Modifier.size(130.dp, 220.dp)
+      }.animateSharedElementTransition(
+        this,
+        SpringSpec(stiffness = 500f),
+        SpringSpec(stiffness = 500f)
+      ),
+      imageModel = item.poster,
+      contentScale = ContentScale.Fit
+    )
+  }
+
+  Orbitary(
+    modifier = Modifier
+      .clickable { isTransformed = !isTransformed }
+  ) {
+    if (isTransformed) {
+      PosterDetails(
+        poster = item,
+        sharedElementContent = { poster() },
+        pressOnBack = {}
+      )
+    } else {
+      Column(
+        Modifier
+          .fillMaxSize()
+          .padding(20.dp),
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.Bottom
+      ) {
+        poster()
+      }
+    }
+  }
+}
+
+@Composable
+private fun OrbitaryMultipleSharedElementTransitionExample() {
   var isTransformed by rememberSaveable { mutableStateOf(false) }
   val items = rememberContentWithOrbitaryScope {
-    ItemUtils.urls.forEach { url ->
+    MockUtils.getMockPosters().forEach { item ->
       GlideImage(
         modifier = if (isTransformed) {
           Modifier.size(140.dp, 180.dp)
@@ -141,7 +187,7 @@ private fun OrbitarySharedElementTransitionExample() {
         }
           .animateSharedElementTransition(this, movementSpec, transformationSpec)
           .padding(8.dp),
-        imageModel = url,
+        imageModel = item.poster,
         contentScale = ContentScale.Fit
       )
     }

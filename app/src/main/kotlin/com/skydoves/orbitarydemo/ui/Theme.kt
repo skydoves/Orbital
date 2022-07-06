@@ -54,8 +54,15 @@ fun OrbitaryTheme(
     LightColorPalette
   }
 
+  val typography = if (darkTheme) {
+    DarkTypography
+  } else {
+    LightTypography
+  }
+
   MaterialTheme(
     colors = colors,
+    typography = typography,
     content = content
   )
 }
