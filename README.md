@@ -14,7 +14,7 @@
 <p align="center">
 <img src="previews/preview0.gif" width="270"/>
 <img src="previews/preview1.gif" width="270"/>
-<img src="previews/preview2.gif" width="270"/>
+<img src="previews/preview3.gif" width="270"/>
 </p>
 
 ## Download
@@ -133,12 +133,66 @@ You can apply the `animateMovement` animation to specific Composables and custom
 
 ### Shared Element Transition
 
-<img src="previews/preview0.gif" width="33%" align="center">
+<img src="previews/preview3.gif" width="33%" align="center">
 
 The example below shows how to implement shared element transition with the `animateSharedElementTransition` extension of the `OrbitaryScope`.
 The `rememberContentWithOrbitaryScope` allows you to create custom animations such as `animateSharedElementTransition` on the `OrbitaryScope`.
 You can apply the `animateSharedElementTransition` animation to specific Composables and customize its `AnimationSpec`.
 Also, you can set the different `AnimationSpec`s for the movement and transformation as seen the below:
+
+```kotlin
+@Composable
+private fun OrbiraySharedElementTransitionExample() {
+  var isTransformed by rememberSaveable { mutableStateOf(false) }
+  val item = MockUtils.getMockPosters()[3]
+  val poster = rememberContentWithOrbitaryScope {
+    GlideImage(
+      modifier = if (isTransformed) {
+        Modifier.fillMaxSize()
+      } else {
+        Modifier.size(130.dp, 220.dp)
+      }.animateSharedElementTransition(
+        this,
+        SpringSpec(stiffness = 500f),
+        SpringSpec(stiffness = 500f)
+      ),
+      imageModel = item.poster,
+      contentScale = ContentScale.Fit
+    )
+  }
+
+  Orbitary(
+    modifier = Modifier
+      .clickable { isTransformed = !isTransformed }
+  ) {
+    if (isTransformed) {
+      PosterDetails(
+        poster = item,
+        sharedElementContent = { poster() },
+        pressOnBack = {}
+      )
+    } else {
+      Column(
+        Modifier
+          .fillMaxSize()
+          .padding(20.dp),
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.Bottom
+      ) {
+        poster()
+      }
+    }
+  }
+}
+```
+
+> **Note**: LookaheadLayout is a very experimental API, so measuring complex Composables might throw exceptions.
+
+### Shared Element Transition with Multiple Items
+
+The example below shows how to implement shared element transition with multipe items. The basic concept of the usage is the same as the **Shared Element Transition** example.
+
+<img src="previews/preview0.gif" width="33%" align="center">
 
 ```kotlin
   var isTransformed by rememberSaveable { mutableStateOf(false) }
