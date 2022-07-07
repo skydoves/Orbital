@@ -52,9 +52,9 @@ class MainActivity : ComponentActivity() {
     setContent {
       OrbitaryTheme {
         OrbiraySharedElementTransitionExample()
-//        OrbitarySharedElementTransitionExample()
-//        OrbitarTransformationExample()
-//        OrbitarMovementExample()
+        // OrbitaryMultipleSharedElementTransitionExample()
+        // OrbitarTransformationExample()
+        // OrbitarMovementExample()
       }
     }
   }
@@ -69,7 +69,7 @@ private fun OrbitarTransformationExample() {
         Modifier.size(300.dp, 620.dp)
       } else {
         Modifier.size(100.dp, 220.dp)
-      }.animateTransformation(this, transformationSpec),
+      }.animateTransformation(transformationSpec),
       imageModel = MockUtils.getMockPoster().poster,
       contentScale = ContentScale.Fit
     )
@@ -98,7 +98,7 @@ private fun OrbitarMovementExample() {
         Modifier.size(360.dp, 620.dp)
       } else {
         Modifier.size(130.dp, 220.dp)
-      }.animateMovement(this, movementSpec),
+      }.animateMovement(movementSpec),
       imageModel = ItemUtils.urls[3],
       contentScale = ContentScale.Fit
     )
@@ -141,7 +141,6 @@ private fun OrbiraySharedElementTransitionExample() {
       } else {
         Modifier.size(130.dp, 220.dp)
       }.animateSharedElementTransition(
-        this,
         SpringSpec(stiffness = 500f),
         SpringSpec(stiffness = 500f)
       ),
@@ -185,7 +184,7 @@ private fun OrbitaryMultipleSharedElementTransitionExample() {
         } else {
           Modifier.size(100.dp, 220.dp)
         }
-          .animateSharedElementTransition(this, movementSpec, transformationSpec)
+          .animateSharedElementTransition(movementSpec, transformationSpec)
           .padding(8.dp),
         imageModel = item.poster,
         contentScale = ContentScale.Fit

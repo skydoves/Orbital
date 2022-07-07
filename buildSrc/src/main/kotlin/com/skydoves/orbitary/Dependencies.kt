@@ -2,7 +2,7 @@ package com.skydoves.orbitary
 
 object Versions {
   internal const val ANDROID_GRADLE_PLUGIN = "7.2.0"
-  internal const val ANDROID_GRADLE_SPOTLESS = "6.3.0"
+  internal const val ANDROID_GRADLE_SPOTLESS = "6.7.0"
   internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.1.0"
   internal const val KOTLIN = "1.7.0"
   internal const val KOTLIN_GRADLE_DOKKA = "1.7.0"

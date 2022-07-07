@@ -25,20 +25,19 @@ import androidx.compose.ui.unit.IntSize
  * Allows a custom modifier to animate the local position and size of the layout within the
  * LookaheadLayout, whenever there's a change in the layout.
  *
- * @param orbitaryScope The measurement and placement of any layout calculated in the lookahead pass can be observed via Modifier.
  * @param movementSpec An [AnimationSpec] which has [IntOffset] as a generic type.
  * @param transformSpec An [AnimationSpec] which has [IntSize] as a generic type.
  */
+context(OrbitaryScope)
 public fun Modifier.animateSharedElementTransition(
-  orbitaryScope: OrbitaryScope,
   movementSpec: AnimationSpec<IntOffset>,
   transformSpec: AnimationSpec<IntSize>,
 ): Modifier {
   return this
     .then(
-      animateMovement(orbitaryScope, movementSpec)
+      animateMovement(movementSpec)
     )
     .then(
-      animateTransformation(orbitaryScope, transformSpec)
+      animateTransformation(transformSpec)
     )
 }
