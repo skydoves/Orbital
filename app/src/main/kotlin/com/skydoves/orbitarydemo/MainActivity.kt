@@ -53,15 +53,15 @@ class MainActivity : ComponentActivity() {
       OrbitaryTheme {
         OrbiraySharedElementTransitionExample()
         // OrbitaryMultipleSharedElementTransitionExample()
-        // OrbitarTransformationExample()
-        // OrbitarMovementExample()
+        // OrbitaryTransformationExample()
+        // OrbitaryMovementExample()
       }
     }
   }
 }
 
 @Composable
-private fun OrbitarTransformationExample() {
+private fun OrbitaryTransformationExample() {
   var isTransformed by rememberSaveable { mutableStateOf(false) }
   val poster = rememberContentWithOrbitaryScope {
     GlideImage(
@@ -90,7 +90,7 @@ private fun OrbitarTransformationExample() {
 }
 
 @Composable
-private fun OrbitarMovementExample() {
+private fun OrbitaryMovementExample() {
   var isTransformed by rememberSaveable { mutableStateOf(false) }
   val poster = rememberContentWithOrbitaryScope {
     GlideImage(
