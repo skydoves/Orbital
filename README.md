@@ -41,7 +41,7 @@ Basically, you can run animation with `Orbitary` Composable function, which prov
 
 ### Transformation
 
-<img src="previews/preview1.gif" width="33%" align="center">
+<img src="previews/preview1.gif" width="300px" align="center">
 
 
 The example below shows how to implement resizing animation with the `animateTransformation` extension of the `OrbitaryScope`.
@@ -83,7 +83,7 @@ You can apply the `animateTransformation` animation to specific Composables and 
 
 ### Movement
 
-<img src="previews/preview2.gif" width="33%" align="center">
+<img src="previews/preview2.gif" width="300px" align="center">
 
 The example below shows how to implement movement animation with the `animateMovement` extension of the `OrbitaryScope`.
 The `rememberContentWithOrbitaryScope` allows you to create custom animations such as `animateMovement` on the `OrbitaryScope`.
@@ -136,7 +136,7 @@ You can apply the `animateMovement` animation to specific Composables and custom
 
 ### Shared Element Transition
 
-<img src="previews/preview3.gif" width="33%" align="center">
+<img src="previews/preview3.gif" width="300px" align="center">
 
 The example below shows how to implement shared element transition with the `animateSharedElementTransition` extension of the `OrbitaryScope`.
 The `rememberContentWithOrbitaryScope` allows you to create custom animations such as `animateSharedElementTransition` on the `OrbitaryScope`.
@@ -195,7 +195,7 @@ private fun OrbiraySharedElementTransitionExample() {
 
 The example below shows how to implement shared element transition with multipe items. The basic concept of the usage is the same as the **Shared Element Transition** example.
 
-<img src="previews/preview0.gif" width="33%" align="center">
+<img src="previews/preview0.gif" width="300px" align="center">
 
 ```kotlin
   var isTransformed by rememberSaveable { mutableStateOf(false) }
