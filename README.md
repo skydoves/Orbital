@@ -29,7 +29,7 @@
 Add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orbitary:0.1.0"
+    implementation "com.github.skydoves:orbitary:0.1.1"
 }
 ```
 
@@ -62,7 +62,7 @@ You can apply the `animateTransformation` animation to specific Composables and 
         Modifier.size(300.dp, 620.dp)
       } else {
         Modifier.size(100.dp, 220.dp)
-      }.animateTransformation(this, transformationSpec),
+      }.animateTransformation(transformationSpec),
       imageModel = ItemUtils.urls[0],
       contentScale = ContentScale.Fit
     )
@@ -103,7 +103,7 @@ You can apply the `animateMovement` animation to specific Composables and custom
         Modifier.size(360.dp, 620.dp)
       } else {
         Modifier.size(130.dp, 220.dp)
-      }.animateMovement(this, movementSpec),
+      }.animateMovement(movementSpec),
       imageModel = ItemUtils.urls[3],
       contentScale = ContentScale.Fit
     )
@@ -156,7 +156,6 @@ private fun OrbiraySharedElementTransitionExample() {
       } else {
         Modifier.size(130.dp, 220.dp)
       }.animateSharedElementTransition(
-        this,
         SpringSpec(stiffness = 500f),
         SpringSpec(stiffness = 500f)
       ),
@@ -208,7 +207,7 @@ The example below shows how to implement shared element transition with multipe 
         } else {
           Modifier.size(100.dp, 220.dp)
         }
-          .animateSharedElementTransition(this, movementSpec, transformationSpec)
+          .animateSharedElementTransition(movementSpec, transformationSpec)
           .padding(8.dp),
         imageModel = url,
         contentScale = ContentScale.Fit
