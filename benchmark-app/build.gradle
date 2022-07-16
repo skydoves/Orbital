@@ -47,6 +47,8 @@ android {
 }
 
 dependencies {
+  implementation project(":orbitary")
+
   implementation Dependencies.material
   implementation Dependencies.composeUI
   implementation Dependencies.composeActivity
