@@ -56,5 +56,3 @@ dependencies {
   implementation Dependencies.composeConstraintLayout
   implementation Dependencies.landscapistGlide
 }
-
-apply from: "$rootDir/spotless.gradle"

@@ -58,8 +58,4 @@ dependencies {
   implementation Dependencies.composeUI
   implementation Dependencies.composeRuntime
   implementation Dependencies.composeMaterial
-  implementation Dependencies.composeFoundation
-  implementation Dependencies.composeTooling
 }
-
-apply from: "$rootDir/spotless.gradle"

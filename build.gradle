@@ -20,6 +20,10 @@ buildscript {
   }
 }
 
+subprojects {
+  apply from: "$rootDir/spotless.gradle"
+}
+
 allprojects {
   tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
