@@ -23,6 +23,11 @@ object Versions {
   internal const val COMPOSE_CONSTRAINT = "1.0.0"
 
   internal const val LANDSCAPIST_GLIDE = "1.5.2"
+
+  internal const val ANDROIDX_TEST_VERSION = "1.4.0"
+  internal const val BASE_PROFILE_VERSION = "1.2.0-rc01"
+  internal const val MACRO_BENCHMARK_VERSION = "1.1.0"
+  internal const val ANDROIDX_UI_AUTOMATOR_VERSION = "2.2.0"
 }
 
 object Dependencies {
@@ -61,4 +66,12 @@ object Dependencies {
   const val androidTestRunner = "androidx.test:runner:${Versions.ANDROIDX_TEST}"
   const val androidTestJunit = "androidx.test.ext:junit-ktx:${Versions.ANDROIDX_JUNIT}"
   const val composeJunitTest = "androidx.compose.ui:ui-test-junit4:${Versions.COMPOSE}"
+
+  const val BASE_PROFILE =
+    "androidx.profileinstaller:profileinstaller:${Versions.BASE_PROFILE_VERSION}"
+  const val MACRO_BENCHMARK =
+    "androidx.benchmark:benchmark-macro-junit4:${Versions.MACRO_BENCHMARK_VERSION}"
+  const val ANDROIDX_UI_AUTOMATOR =
+    "androidx.test.uiautomator:uiautomator:${Versions.ANDROIDX_UI_AUTOMATOR_VERSION}"
+  const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST_VERSION}"
 }

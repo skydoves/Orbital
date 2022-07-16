@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "OrbitaryDemo"
 include ':app'
 include ':orbitary'
+include ':benchmark-app'
+include ':benchmark'
