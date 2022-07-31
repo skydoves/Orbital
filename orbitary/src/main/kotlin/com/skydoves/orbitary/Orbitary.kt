@@ -20,6 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.LookaheadLayout
+import androidx.compose.ui.layout.MeasurePolicy
+import java.lang.Integer.max
 
 /**
  * Orbitary is a layout that measures and placements internally, and collocates the measured layouts
@@ -39,17 +41,9 @@ public fun Orbitary(
       val orbitaryScope = remember { OrbitaryScope(this) }
       orbitaryScope.content()
     },
-    modifier = modifier
-  ) { measurables, constraints ->
-    val placeables = measurables.map { it.measure(constraints) }
-    val maxWidth: Int = placeables.maxOf { it.width }
-    val maxHeight = placeables.maxOf { it.height }
-    layout(maxWidth, maxHeight) {
-      placeables.forEach {
-        it.place(0, 0)
-      }
-    }
-  }
+    modifier = modifier,
+    measurePolicy = measurePolicy
+  )
 }
 
 /**
@@ -80,4 +74,17 @@ public fun Orbitary(
       }
     }
   )
+}
+
+internal val measurePolicy = MeasurePolicy { measurables, constraints ->
+  val contentConstraints = constraints.copy(minWidth = 0, minHeight = 0)
+  val placeables = measurables.map { it.measure(contentConstraints) }
+  val maxWidth: Int = max(placeables.maxOf { it.width }, constraints.minWidth)
+  val maxHeight = max(placeables.maxOf { it.height }, constraints.minHeight)
+  // Position the children.
+  layout(maxWidth, maxHeight) {
+    placeables.forEach {
+      it.place(0, 0)
+    }
+  }
 }
