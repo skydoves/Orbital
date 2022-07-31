@@ -51,8 +51,8 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       OrbitaryTheme {
-//        OrbiraySharedElementTransitionExample()
-        OrbitaryMultipleSharedElementTransitionExample()
+        OrbiraySharedElementTransitionExample()
+//        OrbitaryMultipleSharedElementTransitionExample()
 //         OrbitaryTransformationExample()
 //         OrbitaryMovementExample()
       }
