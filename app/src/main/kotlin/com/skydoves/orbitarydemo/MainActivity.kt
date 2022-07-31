@@ -52,9 +52,9 @@ class MainActivity : ComponentActivity() {
     setContent {
       OrbitaryTheme {
         OrbiraySharedElementTransitionExample()
-        // OrbitaryMultipleSharedElementTransitionExample()
-        // OrbitaryTransformationExample()
-        // OrbitaryMovementExample()
+//        OrbitaryMultipleSharedElementTransitionExample()
+//         OrbitaryTransformationExample()
+//         OrbitaryMovementExample()
       }
     }
   }
@@ -95,7 +95,7 @@ private fun OrbitaryMovementExample() {
   val poster = rememberContentWithOrbitaryScope {
     GlideImage(
       modifier = if (isTransformed) {
-        Modifier.size(360.dp, 620.dp)
+        Modifier.size(130.dp, 220.dp)
       } else {
         Modifier.size(130.dp, 220.dp)
       }.animateMovement(movementSpec),
@@ -177,7 +177,7 @@ private fun OrbiraySharedElementTransitionExample() {
 private fun OrbitaryMultipleSharedElementTransitionExample() {
   var isTransformed by rememberSaveable { mutableStateOf(false) }
   val items = rememberContentWithOrbitaryScope {
-    MockUtils.getMockPosters().forEach { item ->
+    MockUtils.getMockPosters().take(4).forEach { item ->
       GlideImage(
         modifier = if (isTransformed) {
           Modifier.size(140.dp, 180.dp)
