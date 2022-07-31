@@ -16,22 +16,21 @@
 
 package com.skydoves.orbitary
 
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
-import androidx.compose.animation.core.AnimationVector2D
+import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.VectorConverter
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.animation.core.spring
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.round
-import kotlinx.coroutines.launch
 
 /**
  * https://github.com/androidx/androidx/blob/c8d02ae9dc3baa3ad7d974da00ed08e5d00dac74/compose/ui/ui/samples/src/main/java/androidx/compose/ui/samples/LookaheadLayoutSample.kt
@@ -43,37 +42,15 @@ import kotlinx.coroutines.launch
  */
 context(OrbitaryScope)
 public fun Modifier.animateMovement(
-  animationSpec: AnimationSpec<IntOffset>
+  animationSpec: FiniteAnimationSpec<IntOffset> = spring(
+    Spring.DampingRatioNoBouncy,
+    Spring.StiffnessMediumLow
+  )
 ): Modifier = composed {
-  var offsetAnimation: Animatable<IntOffset, AnimationVector2D>? by remember {
-    mutableStateOf(
-      null
-    )
-  }
-
+  val coroutineScope = rememberCoroutineScope()
   var placementOffset: IntOffset by remember { mutableStateOf(IntOffset.Zero) }
-  var targetOffset: IntOffset? by remember {
-    mutableStateOf(null)
-  }
-  // Create a `LaunchEffect` to handle target size change. This avoids creating side effects
-  // from measure/layout phase.
-  LaunchedEffect(Unit) {
-    snapshotFlow {
-      targetOffset
-    }.collect { target ->
-      if (target != null && target != offsetAnimation?.targetValue) {
-        offsetAnimation?.run {
-          launch {
-            animateTo(
-              targetValue = target,
-              animationSpec = animationSpec
-            )
-          }
-        } ?: Animatable(target, IntOffset.VectorConverter).let {
-          offsetAnimation = it
-        }
-      }
-    }
+  val offsetAnimation = remember {
+    DeferredAnimation(coroutineScope, IntOffset.VectorConverter)
   }
   this
     .onPlaced { lookaheadScopeCoordinates, layoutCoordinates ->
@@ -83,11 +60,13 @@ public fun Modifier.animateMovement(
 
       // localLookaheadPositionOf returns the *target* position of this
       // modifier in the LookaheadLayout's local coordinates.
-      targetOffset = lookaheadScopeCoordinates
+      val targetOffset = lookaheadScopeCoordinates
         .localLookaheadPositionOf(
           layoutCoordinates
         )
         .round()
+      offsetAnimation.updateTarget(targetOffset, animationSpec)
+
       // localPositionOf returns the *current* position of this
       // modifier in the LookaheadLayout's local coordinates.
       placementOffset = lookaheadScopeCoordinates
@@ -106,10 +85,10 @@ public fun Modifier.animateMovement(
         // offsetAnimation will animate the target position whenever it changes.
         // In order to place the child at the animated position, we need to offset
         // the child based on the target and current position in LookaheadLayout.
-        val (x, y) = offsetAnimation?.run { value - placementOffset }
+        val (x, y) = offsetAnimation.value?.let { it - placementOffset }
           // If offsetAnimation has not been set up yet (i.e. in the first frame),
           // skip the animation
-          ?: (targetOffset!! - placementOffset)
+          ?: (offsetAnimation.target!! - placementOffset)
         placeable.place(x, y)
       }
     }

@@ -16,21 +16,19 @@
 
 package com.skydoves.orbitary
 
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
-import androidx.compose.animation.core.AnimationVector2D
+import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.VectorConverter
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.animation.core.spring
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntSize
-import kotlinx.coroutines.launch
 
 /**
  * https://github.com/androidx/androidx/blob/c8d02ae9dc3baa3ad7d974da00ed08e5d00dac74/compose/ui/ui/samples/src/main/java/androidx/compose/ui/samples/LookaheadLayoutSample.kt
@@ -42,29 +40,14 @@ import kotlinx.coroutines.launch
  */
 context(OrbitaryScope)
 public fun Modifier.animateTransformation(
-  animationSpec: AnimationSpec<IntSize>
+  animationSpec: FiniteAnimationSpec<IntSize> = spring(
+    Spring.DampingRatioNoBouncy,
+    Spring.StiffnessMediumLow
+  )
 ): Modifier = composed {
-  var sizeAnimation: Animatable<IntSize, AnimationVector2D>? by remember {
-    mutableStateOf(null)
-  }
-  var targetSize: IntSize? by remember { mutableStateOf(null) }
-  // Create a `LaunchEffect` to handle target size change. This avoids creating side effects
-  // from measure/layout phase.
-  LaunchedEffect(Unit) {
-    snapshotFlow { targetSize }.collect { target ->
-      if (target != null && target != sizeAnimation?.targetValue) {
-        sizeAnimation?.run {
-          launch {
-            animateTo(
-              targetValue = target,
-              animationSpec = animationSpec
-            )
-          }
-        } ?: Animatable(target, IntSize.VectorConverter).let {
-          sizeAnimation = it
-        }
-      }
-    }
+  val coroutineScope = rememberCoroutineScope()
+  val sizeAnimation = remember {
+    DeferredAnimation(coroutineScope, IntSize.VectorConverter)
   }
   // The measure logic in `intermediateLayout` is skipped in the lookahead pass, as
   // intermediateLayout is expected to produce intermediate stages of a layout transform.
@@ -75,10 +58,10 @@ public fun Modifier.animateTransformation(
     // child modifier. This lookahead size can be used to animate the size
     // change, such that the animation starts from the current size and gradually
     // change towards `lookaheadSize`.
-    targetSize = lookaheadSize
+    sizeAnimation.updateTarget(lookaheadSize, animationSpec)
     // Reads the animation size if the animation is set up. Otherwise (i.e. first
     // frame), use the lookahead size without animation.
-    val (width, height) = sizeAnimation?.value ?: lookaheadSize
+    val (width, height) = sizeAnimation.value ?: lookaheadSize
     // Creates a fixed set of constraints using the animated size and ensures the sizes are minimum zero.
     val animatedConstraints = Constraints.fixed(
       width.coerceAtLeast(0), height.coerceAtLeast(0)

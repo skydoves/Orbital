@@ -107,7 +107,7 @@ public fun Modifier.animateSharedElementTransition(
       // frame), use the lookahead size without animation.
       val (width, height) = sizeAnimation.value ?: lookaheadSize
       // Creates a fixed set of constraints using the animated size
-      val animatedConstraints = Constraints.fixed(width, height)
+      val animatedConstraints = Constraints.fixed(width.coerceAtLeast(0), height.coerceAtLeast(0))
       // Measure child/children with animated constraints.
       val placeable = measurable.measure(animatedConstraints)
       layout(placeable.width, placeable.height) {
