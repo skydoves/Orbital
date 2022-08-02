@@ -16,7 +16,6 @@
 
 package com.skydoves.orbitary
 
-import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.VectorConverter
@@ -38,7 +37,7 @@ import androidx.compose.ui.unit.round
  * Creates a custom modifier to animate the local position of the layout within the
  * LookaheadLayout, whenever there's a change in the layout.
  *
- * @param animationSpec An [AnimationSpec] which has [IntOffset] as a generic type.
+ * @param animationSpec An [FiniteAnimationSpec] which has [IntOffset] as a generic type.
  */
 context(OrbitaryScope)
 public fun Modifier.animateMovement(
