@@ -29,11 +29,13 @@ import java.lang.Integer.max
  * [animateMovement], [animateTransformation], and [animateSharedElementTransition] on the [OrbitaryScope].
  *
  * @param modifier [Modifier] used to adjust the layout or drawing content.
+ * @param measurePolicy The function that defines the measurement and layout.
  * @param content A Composable that receives [OrbitaryScope].
  */
 @Composable
 public fun Orbitary(
   modifier: Modifier = Modifier,
+  measurePolicy: MeasurePolicy = internalMeasurePolicy,
   content: @Composable OrbitaryScope.() -> Unit
 ) {
   LookaheadLayout(
@@ -54,6 +56,7 @@ public fun Orbitary(
  *
  * @param modifier [Modifier] used to adjust the layout or drawing content.
  * @param isTransformed The criteria to decide which Composable should be executed.
+ * @param measurePolicy The function that defines the measurement and layout.
  * @param onStartContent A Composable that receives [OrbitaryScope]. This will be executed if the [isTransformed] is `false`.
  * @param onTransformedContent A Composable that receives [OrbitaryScope]. This will be executed if the [isTransformed] is `true`.
  */
@@ -61,11 +64,13 @@ public fun Orbitary(
 public fun Orbitary(
   modifier: Modifier = Modifier,
   isTransformed: Boolean,
+  measurePolicy: MeasurePolicy = internalMeasurePolicy,
   onStartContent: @Composable OrbitaryScope.() -> Unit,
   onTransformedContent: @Composable OrbitaryScope.() -> Unit
 ) {
   Orbitary(
     modifier = modifier,
+    measurePolicy = measurePolicy,
     content = {
       if (isTransformed) {
         onStartContent()
@@ -76,7 +81,7 @@ public fun Orbitary(
   )
 }
 
-internal val measurePolicy = MeasurePolicy { measurables, constraints ->
+internal val internalMeasurePolicy = MeasurePolicy { measurables, constraints ->
   val contentConstraints = constraints.copy(minWidth = 0, minHeight = 0)
   val placeables = measurables.map { it.measure(contentConstraints) }
   val maxWidth: Int = max(placeables.maxOf { it.width }, constraints.minWidth)

@@ -14,8 +14,8 @@ public final class com/skydoves/orbitary/AnimateTransformationKt {
 }
 
 public final class com/skydoves/orbitary/OrbitaryKt {
-	public static final fun Orbitary (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
-	public static final fun Orbitary (Landroidx/compose/ui/Modifier;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Orbitary (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Orbitary (Landroidx/compose/ui/Modifier;ZLandroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/skydoves/orbitary/OrbitaryScope : androidx/compose/ui/layout/LookaheadLayoutScope {
