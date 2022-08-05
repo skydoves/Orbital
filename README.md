@@ -29,7 +29,7 @@
 Add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orbitary:0.1.1"
+    implementation "com.github.skydoves:orbitary:0.1.2"
 }
 ```
 
