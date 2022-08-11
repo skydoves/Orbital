@@ -3,18 +3,25 @@ import com.skydoves.orbital.Dependencies
 import com.skydoves.orbital.Versions
 
 plugins {
-  id 'com.android.application'
+  id 'com.android.library'
   id 'org.jetbrains.kotlin.android'
+  id 'org.jetbrains.dokka'
+  id 'binary-compatibility-validator'
 }
 
-android {
-  namespace 'com.skydoves.orbital.benchmark.app'
-  compileSdk Configuration.compileSdk
+ext {
+  PUBLISH_GROUP_ID = Configuration.artifactGroup
+  PUBLISH_ARTIFACT_ID = 'orbital'
+  PUBLISH_VERSION = rootVersionName
+}
 
+apply from: "${rootDir}/scripts/publish-module.gradle"
+
+android {
+  compileSdkVersion Configuration.compileSdk
   defaultConfig {
-    applicationId "com.skydoves.orbital.benchmark.app"
-    minSdk 23
-    targetSdk Configuration.targetSdk
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.targetSdk
   }
 
   buildFeatures {
@@ -35,30 +42,20 @@ android {
     jvmTarget = '1.8'
   }
 
-  packagingOptions {
-    resources {
-      excludes += '/META-INF/{AL2.0,LGPL2.1}'
-    }
-  }
-
   lintOptions {
     abortOnError false
   }
-  buildTypes {
-    benchmark {
-      signingConfig signingConfigs.debug
-      matchingFallbacks = ['release']
-      debuggable false
-    }
-  }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+  kotlinOptions.freeCompilerArgs += [
+    "-Xexplicit-api=strict",
+    "-Xopt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+  ]
 }
 
 dependencies {
-  implementation project(":orbital")
-
-  implementation Dependencies.material
   implementation Dependencies.composeUI
-  implementation Dependencies.composeActivity
   implementation Dependencies.composeRuntime
   implementation Dependencies.composeMaterial
 }

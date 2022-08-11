@@ -12,8 +12,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "OrbitaryDemo"
+rootProject.name = "OrbitalDemo"
 include ':app'
-include ':orbitary'
+include ':orbital'
 include ':benchmark-app'
 include ':benchmark'

@@ -1,6 +1,6 @@
-import com.skydoves.orbitary.Configuration
-import com.skydoves.orbitary.Dependencies
-import com.skydoves.orbitary.Versions
+import com.skydoves.orbital.Configuration
+import com.skydoves.orbital.Dependencies
+import com.skydoves.orbital.Versions
 
 plugins {
   id 'com.android.application'
@@ -10,7 +10,7 @@ plugins {
 android {
   compileSdkVersion Configuration.compileSdk
   defaultConfig {
-    applicationId "com.skydoves.orbitarydemo"
+    applicationId "com.skydoves.orbitaldemo"
     minSdkVersion Configuration.minSdk
     targetSdkVersion Configuration.targetSdk
     versionCode Configuration.versionCode
@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-  implementation project(":orbitary")
+  implementation project(":orbital")
 
   implementation Dependencies.material
   implementation Dependencies.composeUI

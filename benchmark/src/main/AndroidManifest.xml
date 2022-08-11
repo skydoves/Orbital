@@ -2,6 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <queries>
-        <package android:name="com.skydoves.orbitary.benchmark.app" />
+        <package android:name="com.skydoves.orbital.benchmark.app" />
     </queries>
 </manifest>

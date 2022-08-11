@@ -1,11 +1,11 @@
-<h1 align="center">Orbitary</h1></br>
+<h1 align="center">Orbital</h1></br>
 
 <p align="center">
-    <a href="https://devlibrary.withgoogle.com/products/android/repos/skydoves-Orbitary"><img alt="Google" src="https://skydoves.github.io/badges/google-devlib.svg"/></a><br>
+    <a href="https://devlibrary.withgoogle.com/products/android/repos/skydoves-Orbital"><img alt="Google" src="https://skydoves.github.io/badges/google-devlib.svg"/></a><br>
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://github.com/skydoves/Orbitary/actions/workflows/android.yml"><img alt="Build Status" 
-  src="https://github.com/skydoves/Orbitary/actions/workflows/android.yml/badge.svg"/></a>
+  <a href="https://github.com/skydoves/Orbital/actions/workflows/android.yml"><img alt="Build Status" 
+  src="https://github.com/skydoves/Orbital/actions/workflows/android.yml/badge.svg"/></a>
   <a href="https://androidweekly.net/issues/issue-525"><img alt="Android Weekly" src="https://skydoves.github.io/badges/android-weekly.svg"/></a>
   <a href="https://us12.campaign-archive.com/?u=f39692e245b94f7fb693b6d82&id=68710ad80a"><img alt="Kotlin Weekly" src="https://skydoves.github.io/badges/kotlin-weekly.svg"/></a>
   <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
@@ -22,14 +22,14 @@
 </p>
 
 ## Download
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orbitary.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orbitary%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/Orbital.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22Orbital%22)
 
 ### Gradle
 
 Add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orbitary:0.1.2"
+    implementation "com.github.skydoves:orbital:0.1.3"
 }
 ```
 
@@ -37,16 +37,16 @@ dependencies {
 
 ## Usage
 
-You can implement three kinds of animations with Orbitary: **Movement**, **Transformation**, and **Shared Element Transition**. 
-Basically, you can run animation with `Orbitary` Composable function, which provides `OrbitaryScope` that allows you to create animations.
+You can implement three kinds of animations with Orbital: **Movement**, **Transformation**, and **Shared Element Transition**. 
+Basically, you can run animation with `Orbital` Composable function, which provides `OrbitalScope` that allows you to create animations.
 
 ### Transformation
 
 <img src="previews/preview1.gif" width="300px" align="center">
 
 
-The example below shows how to implement resizing animation with the `animateTransformation` extension of the `OrbitaryScope`.
-The `rememberContentWithOrbitaryScope` allows you to create custom animations such as `animateTransformation` on the `OrbitaryScope`.
+The example below shows how to implement resizing animation with the `animateTransformation` extension of the `OrbitalScope`.
+The `rememberContentWithOrbitalScope` allows you to create custom animations such as `animateTransformation` on the `OrbitalScope`.
 You can apply the `animateTransformation` animation to specific Composables and customize its `AnimationSpec` as seen the below:
 
 ```kotlin
@@ -56,7 +56,7 @@ You can apply the `animateTransformation` animation to specific Composables and 
   )
 
   var isTransformed by rememberSaveable { mutableStateOf(false) }
-  val poster = rememberContentWithOrbitaryScope {
+  val poster = rememberContentWithOrbitalScope {
     GlideImage(
       modifier = if (isTransformed) {
         Modifier.size(300.dp, 620.dp)
@@ -68,7 +68,7 @@ You can apply the `animateTransformation` animation to specific Composables and 
     )
   }
 
-  Orbitary(
+  Orbital(
     modifier = Modifier
       .clickable { isTransformed = !isTransformed }
   ) {
@@ -86,8 +86,8 @@ You can apply the `animateTransformation` animation to specific Composables and 
 
 <img src="previews/preview2.gif" width="300px" align="center">
 
-The example below shows how to implement movement animation with the `animateMovement` extension of the `OrbitaryScope`.
-The `rememberContentWithOrbitaryScope` allows you to create custom animations such as `animateMovement` on the `OrbitaryScope`.
+The example below shows how to implement movement animation with the `animateMovement` extension of the `OrbitalScope`.
+The `rememberContentWithOrbitalScope` allows you to create custom animations such as `animateMovement` on the `OrbitalScope`.
 You can apply the `animateMovement` animation to specific Composables and customize its `AnimationSpec` as seen the below:
 
 ```kotlin
@@ -97,7 +97,7 @@ You can apply the `animateMovement` animation to specific Composables and custom
   )
   
   var isTransformed by rememberSaveable { mutableStateOf(false) }
-  val poster = rememberContentWithOrbitaryScope {
+  val poster = rememberContentWithOrbitalScope {
     GlideImage(
       modifier = if (isTransformed) {
         Modifier.size(360.dp, 620.dp)
@@ -109,7 +109,7 @@ You can apply the `animateMovement` animation to specific Composables and custom
     )
   }
 
-  Orbitary(
+  Orbital(
     modifier = Modifier
       .clickable { isTransformed = !isTransformed }
   ) {
@@ -139,8 +139,8 @@ You can apply the `animateMovement` animation to specific Composables and custom
 
 <img src="previews/preview3.gif" width="300px" align="center">
 
-The example below shows how to implement shared element transition with the `animateSharedElementTransition` extension of the `OrbitaryScope`.
-The `rememberContentWithOrbitaryScope` allows you to create custom animations such as `animateSharedElementTransition` on the `OrbitaryScope`.
+The example below shows how to implement shared element transition with the `animateSharedElementTransition` extension of the `OrbitalScope`.
+The `rememberContentWithOrbitalScope` allows you to create custom animations such as `animateSharedElementTransition` on the `OrbitalScope`.
 You can apply the `animateSharedElementTransition` animation to specific Composables and customize its `AnimationSpec`.
 Also, you can set the different `AnimationSpec`s for the movement and transformation as seen the below:
 
@@ -149,7 +149,7 @@ Also, you can set the different `AnimationSpec`s for the movement and transforma
 private fun OrbiraySharedElementTransitionExample() {
   var isTransformed by rememberSaveable { mutableStateOf(false) }
   val item = MockUtils.getMockPosters()[3]
-  val poster = rememberContentWithOrbitaryScope {
+  val poster = rememberContentWithOrbitalScope {
     GlideImage(
       modifier = if (isTransformed) {
         Modifier.fillMaxSize()
@@ -164,7 +164,7 @@ private fun OrbiraySharedElementTransitionExample() {
     )
   }
 
-  Orbitary(
+  Orbital(
     modifier = Modifier
       .clickable { isTransformed = !isTransformed }
   ) {
@@ -199,7 +199,7 @@ The example below shows how to implement shared element transition with multipe 
 
 ```kotlin
   var isTransformed by rememberSaveable { mutableStateOf(false) }
-  val items = rememberContentWithOrbitaryScope {
+  val items = rememberContentWithOrbitalScope {
     ItemUtils.urls.forEach { url ->
       GlideImage(
         modifier = if (isTransformed) {
@@ -215,7 +215,7 @@ The example below shows how to implement shared element transition with multipe 
     }
   }
 
-  Orbitary(
+  Orbital(
     modifier = Modifier
       .fillMaxSize()
       .clickable { isTransformed = !isTransformed },
@@ -239,7 +239,7 @@ The example below shows how to implement shared element transition with multipe 
 
 
 ## Find this repository useful? :heart:
-Support it by joining __[stargazers](https://github.com/skydoves/orbitary/stargazers)__ for this repository. :star: <br>
+Support it by joining __[stargazers](https://github.com/skydoves/Orbital/stargazers)__ for this repository. :star: <br>
 Also, __[follow me](https://github.com/skydoves)__ on GitHub for my next creations! 🤩
 
 # License

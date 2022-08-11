@@ -51,7 +51,7 @@ afterEvaluate {
                 pom {
                     name = PUBLISH_ARTIFACT_ID
                     description = 'Jetpack Compose animation library such as movement, transformation, and shared element transition.'
-                    url = 'https://github.com/skydoves/orbitary'
+                    url = 'https://github.com/skydoves/orbital'
                     licenses {
                         license {
                             name = 'The Apache Software License, Version 2.0'
@@ -65,9 +65,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        connection = 'scm:git:github.com/skydoves/orbitary.git'
-                        developerConnection = 'scm:git:ssh://github.com/skydoves/orbitary.git'
-                        url = 'https://github.com/skydoves/orbitary/tree/main'
+                        connection = 'scm:git:github.com/skydoves/orbital.git'
+                        developerConnection = 'scm:git:ssh://github.com/skydoves/orbital.git'
+                        url = 'https://github.com/skydoves/orbital/tree/main'
                     }
                 }
             }
