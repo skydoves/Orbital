@@ -22,7 +22,7 @@
 </p>
 
 ## Download
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/Orbital.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22Orbital%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orbital.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orbital%22)
 
 ### Gradle
 
