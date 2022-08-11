@@ -1,0 +1,30 @@
+public final class com/skydoves/orbital/AnimateMovementKt {
+	public static final fun animateMovement (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateMovement$default (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbital/AnimateSharedElementTransitionKt {
+	public static final fun animateSharedElementTransition (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateSharedElementTransition$default (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbital/AnimateTransformationKt {
+	public static final fun animateTransformation (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateTransformation$default (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbital/OrbitalKt {
+	public static final fun Orbital (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun Orbital (Landroidx/compose/ui/Modifier;ZLandroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/skydoves/orbital/OrbitalScope : androidx/compose/ui/layout/LookaheadLayoutScope {
+	public static final field $stable I
+	public fun intermediateLayout (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function4;)Landroidx/compose/ui/Modifier;
+	public fun onPlaced (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;)Landroidx/compose/ui/Modifier;
+}
+
+public final class com/skydoves/orbital/RememberMovablesKt {
+	public static final fun rememberContentWithOrbitalScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)Lkotlin/jvm/functions/Function3;
+}
+

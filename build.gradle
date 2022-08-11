@@ -1,4 +1,4 @@
-import com.skydoves.orbitary.Dependencies
+import com.skydoves.orbital.Dependencies
 
 apply plugin: 'io.github.gradle-nexus.publish-plugin'
 apply plugin: 'org.jetbrains.dokka'

@@ -1,4 +1,4 @@
-import com.skydoves.orbitary.Configuration
+import com.skydoves.orbital.Configuration
 
 // Create variables with empty default values
 ext["ossrhUsername"] = ''

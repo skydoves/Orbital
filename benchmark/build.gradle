@@ -1,5 +1,5 @@
-import com.skydoves.orbitary.Configuration
-import com.skydoves.orbitary.Dependencies
+import com.skydoves.orbital.Configuration
+import com.skydoves.orbital.Dependencies
 
 plugins {
     id 'com.android.test'
@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.skydoves.orbitary.benchmark'
+    namespace 'com.skydoves.orbital.benchmark'
     compileSdk Configuration.compileSdk
 
     compileOptions {
