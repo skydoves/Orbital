@@ -62,7 +62,7 @@ You can apply the `animateTransformation` animation to specific Composables and 
         Modifier.size(300.dp, 620.dp)
       } else {
         Modifier.size(100.dp, 220.dp)
-      }.animateTransformation(transformationSpec),
+      }.animateTransformation(this, transformationSpec),
       imageModel = ItemUtils.urls[0],
       contentScale = ContentScale.Fit
     )
@@ -103,7 +103,7 @@ You can apply the `animateMovement` animation to specific Composables and custom
         Modifier.size(360.dp, 620.dp)
       } else {
         Modifier.size(130.dp, 220.dp)
-      }.animateMovement(movementSpec),
+      }.animateMovement(this, movementSpec),
       imageModel = ItemUtils.urls[3],
       contentScale = ContentScale.Fit
     )
@@ -146,7 +146,7 @@ Also, you can set the different `AnimationSpec`s for the movement and transforma
 
 ```kotlin
 @Composable
-private fun OrbiraySharedElementTransitionExample() {
+private fun OrbitalSharedElementTransitionExample() {
   var isTransformed by rememberSaveable { mutableStateOf(false) }
   val item = MockUtils.getMockPosters()[3]
   val poster = rememberContentWithOrbitalScope {
@@ -156,6 +156,7 @@ private fun OrbiraySharedElementTransitionExample() {
       } else {
         Modifier.size(130.dp, 220.dp)
       }.animateSharedElementTransition(
+        this,
         SpringSpec(stiffness = 500f),
         SpringSpec(stiffness = 500f)
       ),
