@@ -24,14 +24,6 @@ subprojects {
   apply from: "$rootDir/spotless.gradle"
 }
 
-allprojects {
-  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-      freeCompilerArgs += "-Xcontext-receivers"
-    }
-  }
-}
-
 task clean(type: Delete) {
   delete rootProject.buildDir
 }
