@@ -1,16 +1,16 @@
 public final class com/skydoves/orbital/AnimateMovementKt {
-	public static final fun animateMovement (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
-	public static synthetic fun animateMovement$default (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static final fun animateMovement (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateMovement$default (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
 }
 
 public final class com/skydoves/orbital/AnimateSharedElementTransitionKt {
-	public static final fun animateSharedElementTransition (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
-	public static synthetic fun animateSharedElementTransition$default (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static final fun animateSharedElementTransition (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateSharedElementTransition$default (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
 }
 
 public final class com/skydoves/orbital/AnimateTransformationKt {
-	public static final fun animateTransformation (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
-	public static synthetic fun animateTransformation$default (Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static final fun animateTransformation (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateTransformation$default (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
 }
 
 public final class com/skydoves/orbital/OrbitalKt {

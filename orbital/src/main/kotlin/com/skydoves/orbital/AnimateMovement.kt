@@ -39,8 +39,8 @@ import androidx.compose.ui.unit.round
  *
  * @param animationSpec An [FiniteAnimationSpec] which has [IntOffset] as a generic type.
  */
-context(OrbitalScope)
 public fun Modifier.animateMovement(
+  orbitalScope: OrbitalScope,
   animationSpec: FiniteAnimationSpec<IntOffset> = spring(
     Spring.DampingRatioNoBouncy,
     Spring.StiffnessMediumLow
@@ -51,44 +51,46 @@ public fun Modifier.animateMovement(
   val offsetAnimation = remember {
     DeferredAnimation(coroutineScope, IntOffset.VectorConverter)
   }
-  this
-    .onPlaced { lookaheadScopeCoordinates, layoutCoordinates ->
-      // This block of code has the LookaheadCoordinates of the LookaheadLayout
-      // as the first parameter, and the coordinates of this modifier as the second
-      // parameter.
+  with(orbitalScope) {
+    this@composed
+      .onPlaced { lookaheadScopeCoordinates, layoutCoordinates ->
+        // This block of code has the LookaheadCoordinates of the LookaheadLayout
+        // as the first parameter, and the coordinates of this modifier as the second
+        // parameter.
 
-      // localLookaheadPositionOf returns the *target* position of this
-      // modifier in the LookaheadLayout's local coordinates.
-      val targetOffset = lookaheadScopeCoordinates
-        .localLookaheadPositionOf(
-          layoutCoordinates
-        )
-        .round()
-      offsetAnimation.updateTarget(targetOffset, animationSpec)
+        // localLookaheadPositionOf returns the *target* position of this
+        // modifier in the LookaheadLayout's local coordinates.
+        val targetOffset = lookaheadScopeCoordinates
+          .localLookaheadPositionOf(
+            layoutCoordinates
+          )
+          .round()
+        offsetAnimation.updateTarget(targetOffset, animationSpec)
 
-      // localPositionOf returns the *current* position of this
-      // modifier in the LookaheadLayout's local coordinates.
-      placementOffset = lookaheadScopeCoordinates
-        .localPositionOf(
-          layoutCoordinates, Offset.Zero
-        )
-        .round()
-    }
-    // The measure logic in `intermediateLayout` is skipped in the lookahead pass, as
-    // intermediateLayout is expected to produce intermediate stages of a layout
-    // transform. When the measure block is invoked after lookahead pass, the lookahead
-    // size of the child will be accessible as a parameter to the measure block.
-    .intermediateLayout { measurable, constraints, _ ->
-      val placeable = measurable.measure(constraints)
-      layout(placeable.width, placeable.height) {
-        // offsetAnimation will animate the target position whenever it changes.
-        // In order to place the child at the animated position, we need to offset
-        // the child based on the target and current position in LookaheadLayout.
-        val (x, y) = offsetAnimation.value?.let { it - placementOffset }
-          // If offsetAnimation has not been set up yet (i.e. in the first frame),
-          // skip the animation
-          ?: (offsetAnimation.target!! - placementOffset)
-        placeable.place(x, y)
+        // localPositionOf returns the *current* position of this
+        // modifier in the LookaheadLayout's local coordinates.
+        placementOffset = lookaheadScopeCoordinates
+          .localPositionOf(
+            layoutCoordinates, Offset.Zero
+          )
+          .round()
       }
-    }
+      // The measure logic in `intermediateLayout` is skipped in the lookahead pass, as
+      // intermediateLayout is expected to produce intermediate stages of a layout
+      // transform. When the measure block is invoked after lookahead pass, the lookahead
+      // size of the child will be accessible as a parameter to the measure block.
+      .intermediateLayout { measurable, constraints, _ ->
+        val placeable = measurable.measure(constraints)
+        layout(placeable.width, placeable.height) {
+          // offsetAnimation will animate the target position whenever it changes.
+          // In order to place the child at the animated position, we need to offset
+          // the child based on the target and current position in LookaheadLayout.
+          val (x, y) = offsetAnimation.value?.let { it - placementOffset }
+            // If offsetAnimation has not been set up yet (i.e. in the first frame),
+            // skip the animation
+            ?: (offsetAnimation.target!! - placementOffset)
+          placeable.place(x, y)
+        }
+      }
+  }
 }

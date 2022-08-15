@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.IntSize
  *
  * @param animationSpec An [FiniteAnimationSpec] which has [IntSize] as a generic type.
  */
-context(OrbitalScope)
 public fun Modifier.animateTransformation(
+  orbitalScope: OrbitalScope,
   animationSpec: FiniteAnimationSpec<IntSize> = spring(
     Spring.DampingRatioNoBouncy,
     Spring.StiffnessMediumLow
@@ -50,23 +50,26 @@ public fun Modifier.animateTransformation(
   // intermediateLayout is expected to produce intermediate stages of a layout transform.
   // When the measure block is invoked after lookahead pass, the lookahead size of the
   // child will be accessible as a parameter to the measure block.
-  this.intermediateLayout { measurable, _, lookaheadSize ->
-    // When layout changes, the lookahead pass will calculate a new final size for the
-    // child modifier. This lookahead size can be used to animate the size
-    // change, such that the animation starts from the current size and gradually
-    // change towards `lookaheadSize`.
-    sizeAnimation.updateTarget(lookaheadSize, animationSpec)
-    // Reads the animation size if the animation is set up. Otherwise (i.e. first
-    // frame), use the lookahead size without animation.
-    val (width, height) = sizeAnimation.value ?: lookaheadSize
-    // Creates a fixed set of constraints using the animated size and ensures the sizes are minimum zero.
-    val animatedConstraints = Constraints.fixed(
-      width.coerceAtLeast(0), height.coerceAtLeast(0)
-    )
-    // Measure child/children with animated constraints.
-    val placeable = measurable.measure(animatedConstraints)
-    layout(placeable.width, placeable.height) {
-      placeable.place(0, 0)
-    }
+  with(orbitalScope) {
+    this@composed
+      .intermediateLayout { measurable, _, lookaheadSize ->
+        // When layout changes, the lookahead pass will calculate a new final size for the
+        // child modifier. This lookahead size can be used to animate the size
+        // change, such that the animation starts from the current size and gradually
+        // change towards `lookaheadSize`.
+        sizeAnimation.updateTarget(lookaheadSize, animationSpec)
+        // Reads the animation size if the animation is set up. Otherwise (i.e. first
+        // frame), use the lookahead size without animation.
+        val (width, height) = sizeAnimation.value ?: lookaheadSize
+        // Creates a fixed set of constraints using the animated size and ensures the sizes are minimum zero.
+        val animatedConstraints = Constraints.fixed(
+          width.coerceAtLeast(0), height.coerceAtLeast(0)
+        )
+        // Measure child/children with animated constraints.
+        val placeable = measurable.measure(animatedConstraints)
+        layout(placeable.width, placeable.height) {
+          placeable.place(0, 0)
+        }
+      }
   }
 }

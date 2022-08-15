@@ -48,7 +48,7 @@ fun OrbitalMovementProfiles() {
         Modifier.size(30.dp, 30.dp)
       }
         .background(Color.Green)
-        .animateMovement(movementSpec)
+        .animateMovement(this, movementSpec)
     )
   }
 
