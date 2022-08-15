@@ -45,7 +45,7 @@ fun OrbitalTransformationProfiles() {
         Modifier.size(20.dp, 20.dp)
       }
         .background(Color.Blue)
-        .animateTransformation(transformationSpec)
+        .animateTransformation(this, transformationSpec)
     )
   }
 

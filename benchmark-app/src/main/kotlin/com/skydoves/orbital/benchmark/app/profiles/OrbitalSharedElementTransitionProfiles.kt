@@ -50,6 +50,7 @@ fun OrbitalSharedElementTransitionProfiles() {
         Modifier.size(60.dp, 60.dp)
       }
         .animateSharedElementTransition(
+          this,
           SpringSpec(stiffness = 500f),
           SpringSpec(stiffness = 500f)
         )
