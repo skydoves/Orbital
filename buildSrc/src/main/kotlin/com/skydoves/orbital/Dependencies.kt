@@ -8,8 +8,8 @@ object Versions {
   internal const val KOTLIN_GRADLE_DOKKA = "1.7.10"
   internal const val KOTLIN_BINARY_VALIDATOR = "0.11.0"
 
-  internal const val COMPOSE = "1.3.0-beta01"
-  internal const val COMPOSE_COMPILER = "1.3.0"
+  internal const val COMPOSE = "1.3.0-beta02"
+  internal const val COMPOSE_COMPILER = "1.3.1"
   internal const val COROUTINES = "1.6.4"
 
   internal const val RULES = "1.4.0"
