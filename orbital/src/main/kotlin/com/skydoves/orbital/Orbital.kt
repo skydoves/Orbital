@@ -72,7 +72,7 @@ public fun Orbital(
     modifier = modifier,
     measurePolicy = measurePolicy,
     content = {
-      if (isTransformed) {
+      if (!isTransformed) {
         onStartContent()
       } else {
         onTransformedContent()
