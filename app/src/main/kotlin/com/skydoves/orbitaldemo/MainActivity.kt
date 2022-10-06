@@ -36,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.orbital.Orbital
 import com.skydoves.orbital.animateMovement
@@ -71,7 +72,7 @@ private fun OrbitalTransformationExample() {
         Modifier.size(100.dp, 220.dp)
       }.animateTransformation(this, transformationSpec),
       imageModel = MockUtils.getMockPoster().poster,
-      contentScale = ContentScale.Fit
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
     )
   }
 
@@ -100,7 +101,7 @@ private fun OrbitalMovementExample() {
         Modifier.size(130.dp, 220.dp)
       }.animateMovement(this, movementSpec),
       imageModel = ItemUtils.urls[3],
-      contentScale = ContentScale.Fit
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
     )
   }
 
@@ -146,7 +147,7 @@ private fun OrbitalSharedElementTransitionExample() {
         SpringSpec(stiffness = 500f)
       ),
       imageModel = item.poster,
-      contentScale = ContentScale.Fit
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
     )
   }
 
@@ -188,7 +189,7 @@ private fun OrbitalMultipleSharedElementTransitionExample() {
           .animateSharedElementTransition(this, movementSpec, transformationSpec)
           .padding(8.dp),
         imageModel = item.poster,
-        contentScale = ContentScale.Fit
+        imageOptions = ImageOptions(contentScale = ContentScale.Fit)
       )
     }
   }

@@ -50,7 +50,7 @@ fun PosterDetails(
       .fillMaxSize()
   ) {
     ConstraintLayout {
-      val (arrow, image, title, content, gifTitle, gif) = createRefs()
+      val (arrow, image, title, content, _, _) = createRefs()
 
       Box(
         modifier = Modifier
