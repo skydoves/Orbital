@@ -71,7 +71,7 @@ private fun OrbitalTransformationExample() {
       } else {
         Modifier.size(100.dp, 220.dp)
       }.animateTransformation(this, transformationSpec),
-      imageModel = MockUtils.getMockPoster().poster,
+      imageModel = { MockUtils.getMockPoster().poster },
       imageOptions = ImageOptions(contentScale = ContentScale.Fit)
     )
   }
@@ -100,7 +100,7 @@ private fun OrbitalMovementExample() {
       } else {
         Modifier.size(130.dp, 220.dp)
       }.animateMovement(this, movementSpec),
-      imageModel = ItemUtils.urls[3],
+      imageModel = { ItemUtils.urls[3] },
       imageOptions = ImageOptions(contentScale = ContentScale.Fit)
     )
   }
@@ -146,7 +146,7 @@ private fun OrbitalSharedElementTransitionExample() {
         SpringSpec(stiffness = 500f),
         SpringSpec(stiffness = 500f)
       ),
-      imageModel = item.poster,
+      imageModel = { item.poster },
       imageOptions = ImageOptions(contentScale = ContentScale.Fit)
     )
   }
@@ -188,7 +188,7 @@ private fun OrbitalMultipleSharedElementTransitionExample() {
         }
           .animateSharedElementTransition(this, movementSpec, transformationSpec)
           .padding(8.dp),
-        imageModel = item.poster,
+        imageModel = { item.poster },
         imageOptions = ImageOptions(contentScale = ContentScale.Fit)
       )
     }
