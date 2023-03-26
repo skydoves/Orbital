@@ -9,7 +9,7 @@ object Versions {
   internal const val KOTLIN_BINARY_VALIDATOR = "0.13.0"
 
   internal const val COMPOSE = "1.3.1"
-  internal const val COMPOSE_COMPILER = "1.4.3"
+  internal const val COMPOSE_COMPILER = "1.4.4"
   internal const val COROUTINES = "1.6.4"
 
   internal const val RULES = "1.4.0"
