@@ -1,15 +1,15 @@
 package com.skydoves.orbital
 
 object Versions {
-  internal const val ANDROID_GRADLE_PLUGIN = "7.4.0"
+  internal const val ANDROID_GRADLE_PLUGIN = "7.4.1"
   internal const val ANDROID_GRADLE_SPOTLESS = "6.7.0"
-  internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.1.0"
-  internal const val KOTLIN = "1.8.0"
-  internal const val KOTLIN_GRADLE_DOKKA = "1.7.20"
-  internal const val KOTLIN_BINARY_VALIDATOR = "0.12.1"
+  internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.3.0"
+  internal const val KOTLIN = "1.8.10"
+  internal const val KOTLIN_GRADLE_DOKKA = "1.8.10"
+  internal const val KOTLIN_BINARY_VALIDATOR = "0.13.0"
 
   internal const val COMPOSE = "1.3.1"
-  internal const val COMPOSE_COMPILER = "1.4.0"
+  internal const val COMPOSE_COMPILER = "1.4.4"
   internal const val COROUTINES = "1.6.4"
 
   internal const val RULES = "1.4.0"
