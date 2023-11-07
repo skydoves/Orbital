@@ -1,7 +1,7 @@
 package com.skydoves.orbital
 
 object Configuration {
-  const val compileSdk = 33
+  const val compileSdk = 34
   const val targetSdk = 33
   const val minSdk = 21
   const val majorVersion = 0

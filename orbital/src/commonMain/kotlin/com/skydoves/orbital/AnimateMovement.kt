@@ -25,92 +25,66 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.layout.intermediateLayout
+import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.round
 
 /**
- * Allows a custom modifier to animate the local position and size of the layout within the
+ * https://github.com/androidx/androidx/blob/c8d02ae9dc3baa3ad7d974da00ed08e5d00dac74/compose/ui/ui/samples/src/main/java/androidx/compose/ui/samples/LookaheadLayoutSample.kt
+ *
+ * Creates a custom modifier to animate the local position of the layout within the
  * LookaheadLayout, whenever there's a change in the layout.
  *
- * @param movementSpec An [FiniteAnimationSpec] which has [IntOffset] as a generic type.
- * @param transformSpec An [FiniteAnimationSpec] which has [IntSize] as a generic type.
+ * @param animationSpec An [FiniteAnimationSpec] which has [IntOffset] as a generic type.
  */
-public fun Modifier.animateSharedElementTransition(
+@OptIn(ExperimentalComposeUiApi::class)
+public fun Modifier.animateMovement(
   orbitalScope: OrbitalScope,
-  movementSpec: FiniteAnimationSpec<IntOffset> = spring(
+  animationSpec: FiniteAnimationSpec<IntOffset> = spring(
     Spring.DampingRatioNoBouncy,
     Spring.StiffnessMediumLow
-  ),
-  transformSpec: FiniteAnimationSpec<IntSize> = spring(
-    Spring.DampingRatioNoBouncy,
-    Spring.StiffnessMediumLow
-  ),
+  )
 ): Modifier = composed {
   val coroutineScope = rememberCoroutineScope()
   var placementOffset: IntOffset by remember { mutableStateOf(IntOffset.Zero) }
-
   val offsetAnimation = remember {
     DeferredAnimation(coroutineScope, IntOffset.VectorConverter)
   }
-  val sizeAnimation = remember {
-    DeferredAnimation(coroutineScope, IntSize.VectorConverter)
-  }
-  // The measure logic in `intermediateLayout` is skipped in the lookahead pass, as
-  // intermediateLayout is expected to produce intermediate stages of a layout transform.
-  // When the measure block is invoked after lookahead pass, the lookahead size of the
-  // child will be accessible as a parameter to the measure block.
   with(orbitalScope) {
     this@composed
-      .intermediateLayout { measurable, constraints, lookaheadSize ->
-        val (width, height) = sizeAnimation.value ?: lookaheadSize
-        measurable
-          .measure(constraints)
-          .run {
-            layout(width, height) {
-              place(0, 0)
-            }
-          }
-      }
-      .onPlaced { lookaheadScopeCoordinates, layoutCoordinates ->
+      .onPlaced { layoutCoordinates ->
         // This block of code has the LookaheadCoordinates of the LookaheadLayout
         // as the first parameter, and the coordinates of this modifier as the second
         // parameter.
 
         // localLookaheadPositionOf returns the *target* position of this
         // modifier in the LookaheadLayout's local coordinates.
-        val targetOffset = lookaheadScopeCoordinates
+        val targetOffset = layoutCoordinates.parentLayoutCoordinates!!
           .localLookaheadPositionOf(
             layoutCoordinates
           )
           .round()
-        offsetAnimation.updateTarget(targetOffset, movementSpec)
+        offsetAnimation.updateTarget(targetOffset, animationSpec)
 
         // localPositionOf returns the *current* position of this
         // modifier in the LookaheadLayout's local coordinates.
-        placementOffset = lookaheadScopeCoordinates
+        placementOffset = layoutCoordinates.parentLayoutCoordinates!!
           .localPositionOf(
             layoutCoordinates, Offset.Zero
           )
           .round()
       }
-      .intermediateLayout { measurable, _, lookaheadSize ->
-        // When layout changes, the lookahead pass will calculate a new final size for the
-        // child modifier. This lookahead size can be used to animate the size
-        // change, such that the animation starts from the current size and gradually
-        // change towards `lookaheadSize`.
-        sizeAnimation.updateTarget(lookaheadSize, transformSpec)
-        // Reads the animation size if the animation is set up. Otherwise (i.e. first
-        // frame), use the lookahead size without animation.
-        val (width, height) = sizeAnimation.value ?: lookaheadSize
-        // Creates a fixed set of constraints using the animated size
-        val animatedConstraints = Constraints.fixed(width.coerceAtLeast(0), height.coerceAtLeast(0))
-        // Measure child/children with animated constraints.
-        val placeable = measurable.measure(animatedConstraints)
+      // The measure logic in `intermediateLayout` is skipped in the lookahead pass, as
+      // intermediateLayout is expected to produce intermediate stages of a layout
+      // transform. When the measure block is invoked after lookahead pass, the lookahead
+      // size of the child will be accessible as a parameter to the measure block.
+      .intermediateLayout { measurable, constraints ->
+        val placeable = measurable.measure(constraints)
         layout(placeable.width, placeable.height) {
           // offsetAnimation will animate the target position whenever it changes.
           // In order to place the child at the animated position, we need to offset
