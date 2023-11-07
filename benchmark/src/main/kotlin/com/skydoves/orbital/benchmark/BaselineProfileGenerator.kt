@@ -15,18 +15,23 @@
  */
 package com.skydoves.orbital.benchmark
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import org.junit.Rule
 import org.junit.Test
 
+@RequiresApi(Build.VERSION_CODES.P)
 class BaselineProfileGenerator {
   @get:Rule
   val baselineProfileRule = BaselineProfileRule()
 
   @Test
   fun startup() =
-    baselineProfileRule.collectBaselineProfile(
+    baselineProfileRule.collect(
       packageName = "com.skydoves.orbital.benchmark.app",
+      stableIterations = 2,
+      maxIterations = 8,
     ) {
       pressHome()
       // This block defines the app's critical user journey. Here we are interested in

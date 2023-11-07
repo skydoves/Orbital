@@ -90,9 +90,14 @@ android {
 }
 
 baselineProfile {
+  baselineProfileOutputDir = "../../src/androidMain/generated/baselineProfiles"
   filter {
     include("com.skydoves.orbital.**")
   }
+}
+
+dependencies {
+  baselineProfile(project(":benchmark"))
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

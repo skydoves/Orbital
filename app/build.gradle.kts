@@ -18,7 +18,6 @@ import com.skydoves.orbital.Configuration
 plugins {
   id(libs.plugins.android.application.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.baseline.profile.get().pluginId)
 }
 
 android {
