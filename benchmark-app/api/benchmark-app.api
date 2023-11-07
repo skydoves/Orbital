@@ -1,0 +1,36 @@
+public final class com/skydoves/orbital/benchmark/app/BuildConfig {
+	public static final field APPLICATION_ID Ljava/lang/String;
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public fun <init> ()V
+}
+
+public final class com/skydoves/orbital/benchmark/app/ComposableSingletons$MainActivityKt {
+	public static final field INSTANCE Lcom/skydoves/orbital/benchmark/app/ComposableSingletons$MainActivityKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$benchmark_app_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/skydoves/orbital/benchmark/app/MainActivity : androidx/activity/ComponentActivity {
+	public static final field $stable I
+	public fun <init> ()V
+}
+
+public final class com/skydoves/orbital/benchmark/app/profiles/AnimationSpecsKt {
+	public static final fun getMovementSpec ()Landroidx/compose/animation/core/SpringSpec;
+	public static final fun getTransformationSpec ()Landroidx/compose/animation/core/SpringSpec;
+}
+
+public final class com/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt {
+	public static final fun OrbitalMovementProfiles (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/skydoves/orbital/benchmark/app/profiles/OrbitalSharedElementTransitionProfilesKt {
+	public static final fun OrbitalSharedElementTransitionProfiles (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/skydoves/orbital/benchmark/app/profiles/OrbitalTransformationProfilesKt {
+	public static final fun OrbitalTransformationProfiles (Landroidx/compose/runtime/Composer;I)V
+}
+

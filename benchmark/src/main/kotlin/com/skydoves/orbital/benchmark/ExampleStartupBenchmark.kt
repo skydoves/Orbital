@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbital.benchmark
 
 import androidx.benchmark.macro.BaselineProfileMode
@@ -62,8 +61,8 @@ abstract class AbstractStartupBenchmark(private val startupMode: StartupMode) {
   fun startupBaselineProfileDisabled() = startup(
     CompilationMode.Partial(
       baselineProfileMode = BaselineProfileMode.Disable,
-      warmupIterations = 1
-    )
+      warmupIterations = 1,
+    ),
   )
 
   @Test
@@ -81,7 +80,7 @@ abstract class AbstractStartupBenchmark(private val startupMode: StartupMode) {
     startupMode = startupMode,
     setupBlock = {
       pressHome()
-    }
+    },
   ) {
     startActivityAndWait()
   }

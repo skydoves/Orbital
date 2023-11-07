@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbital.benchmark.app.profiles
 
 import androidx.compose.animation.core.SpringSpec
@@ -52,26 +51,26 @@ fun OrbitalSharedElementTransitionProfiles() {
         .animateSharedElementTransition(
           this,
           SpringSpec(stiffness = 500f),
-          SpringSpec(stiffness = 500f)
+          SpringSpec(stiffness = 500f),
         )
-        .background(Color.Yellow)
+        .background(Color.Yellow),
     )
   }
 
   Orbital(
     modifier = Modifier
       .fillMaxWidth()
-      .clickable { isTransformed = !isTransformed }
+      .clickable { isTransformed = !isTransformed },
   ) {
     if (isTransformed) {
       Column(
         horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
       ) {
         Box(
           modifier = Modifier
             .size(90.dp, 90.dp)
-            .background(Color.Blue)
+            .background(Color.Blue),
         )
       }
     } else {

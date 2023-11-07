@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbital
 
 import androidx.compose.animation.core.FiniteAnimationSpec
@@ -47,8 +46,8 @@ public fun Modifier.animateMovement(
   orbitalScope: OrbitalScope,
   animationSpec: FiniteAnimationSpec<IntOffset> = spring(
     Spring.DampingRatioNoBouncy,
-    Spring.StiffnessMediumLow
-  )
+    Spring.StiffnessMediumLow,
+  ),
 ): Modifier = composed {
   val coroutineScope = rememberCoroutineScope()
   var placementOffset: IntOffset by remember { mutableStateOf(IntOffset.Zero) }
@@ -66,7 +65,7 @@ public fun Modifier.animateMovement(
         // modifier in the LookaheadLayout's local coordinates.
         val targetOffset = layoutCoordinates.parentLayoutCoordinates!!
           .localLookaheadPositionOf(
-            layoutCoordinates
+            layoutCoordinates,
           )
           .round()
         offsetAnimation.updateTarget(targetOffset, animationSpec)
@@ -75,7 +74,7 @@ public fun Modifier.animateMovement(
         // modifier in the LookaheadLayout's local coordinates.
         placementOffset = layoutCoordinates.parentLayoutCoordinates!!
           .localPositionOf(
-            layoutCoordinates, Offset.Zero
+            layoutCoordinates, Offset.Zero,
           )
           .round()
       }

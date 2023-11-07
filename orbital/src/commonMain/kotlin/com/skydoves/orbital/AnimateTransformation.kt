@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbital
 
 import androidx.compose.animation.core.FiniteAnimationSpec
@@ -39,8 +38,8 @@ public fun Modifier.animateTransformation(
   orbitalScope: OrbitalScope,
   animationSpec: FiniteAnimationSpec<IntSize> = spring(
     Spring.DampingRatioNoBouncy,
-    Spring.StiffnessMediumLow
-  )
+    Spring.StiffnessMediumLow,
+  ),
 ): Modifier = composed {
   val coroutineScope = rememberCoroutineScope()
   val sizeAnimation = remember {
@@ -63,7 +62,8 @@ public fun Modifier.animateTransformation(
         val (width, height) = sizeAnimation.value ?: lookaheadSize
         // Creates a fixed set of constraints using the animated size and ensures the sizes are minimum zero.
         val animatedConstraints = Constraints.fixed(
-          width.coerceAtLeast(0), height.coerceAtLeast(0)
+          width.coerceAtLeast(0),
+          height.coerceAtLeast(0),
         )
         // Measure child/children with animated constraints.
         val placeable = measurable.measure(animatedConstraints)

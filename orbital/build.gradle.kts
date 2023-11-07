@@ -1,12 +1,12 @@
 import com.skydoves.orbital.Configuration
 import com.skydoves.orbital.Versions
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  id("com.android.library")
   kotlin("multiplatform")
-  id("org.jetbrains.compose")
-  id("org.jetbrains.dokka")
-  id("binary-compatibility-validator")
+  id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.jetbrains.compose.get().pluginId)
+  id(libs.plugins.baseline.profile.get().pluginId)
 }
 
 kotlin {
@@ -36,9 +36,9 @@ kotlin {
   explicitApi()
 }
 
-
 android {
   compileSdk = Configuration.compileSdk
+  namespace = "com.skydoves.orbital"
   defaultConfig {
     minSdk = Configuration.minSdk
   }
@@ -59,6 +59,12 @@ android {
 
   lint {
     abortOnError = false
+  }
+}
+
+baselineProfile {
+  filter {
+    include("com.skydoves.orbital.**")
   }
 }
 
