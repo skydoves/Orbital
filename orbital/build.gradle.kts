@@ -1,12 +1,28 @@
 import com.skydoves.orbital.Configuration
-import com.skydoves.orbital.Versions
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   kotlin("multiplatform")
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.jetbrains.compose.get().pluginId)
+  id(libs.plugins.nexus.plugin.get().pluginId)
   id(libs.plugins.baseline.profile.get().pluginId)
+}
+
+apply(from = "${rootDir}/scripts/publish-module.gradle.kts")
+
+mavenPublishing {
+  val artifactId = "orbital"
+  coordinates(
+    Configuration.artifactGroup,
+    artifactId,
+    rootProject.extra.get("libVersion").toString()
+  )
+
+  pom {
+    name.set(artifactId)
+    description.set("Jetpack Compose Multiplatform library that allows you to implement dynamic transition animations such as shared element transitions.")
+  }
 }
 
 kotlin {
@@ -54,7 +70,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion = Versions.COMPOSE_COMPILER
+    kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
   }
 
   lint {
