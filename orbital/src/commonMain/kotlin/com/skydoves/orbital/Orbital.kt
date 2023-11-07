@@ -24,7 +24,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.LookaheadLayout
 import androidx.compose.ui.layout.LookaheadScope
 import androidx.compose.ui.layout.MeasurePolicy
-import java.lang.Integer.max
+import kotlin.math.max
 
 /**
  * Orbital is a layout that measures and placements internally, and collocates the measured layouts
