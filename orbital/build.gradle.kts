@@ -73,6 +73,12 @@ android {
     kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
   }
 
+  packaging {
+    resources {
+      excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+    }
+  }
+
   lint {
     abortOnError = false
   }
