@@ -1,18 +1,49 @@
 import com.skydoves.orbital.Configuration
-import com.skydoves.orbital.Dependencies
-import com.skydoves.orbital.Versions
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  id("com.android.library")
   kotlin("multiplatform")
-  id("org.jetbrains.compose")
-  id("org.jetbrains.dokka")
-  id("binary-compatibility-validator")
+  id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.jetbrains.compose.get().pluginId)
+  id(libs.plugins.nexus.plugin.get().pluginId)
+  id(libs.plugins.baseline.profile.get().pluginId)
+}
+
+apply(from = "${rootDir}/scripts/publish-module.gradle.kts")
+
+mavenPublishing {
+  val artifactId = "orbital"
+  coordinates(
+    Configuration.artifactGroup,
+    artifactId,
+    rootProject.extra.get("libVersion").toString()
+  )
+
+  pom {
+    name.set(artifactId)
+    description.set("Jetpack Compose Multiplatform library that allows you to implement dynamic transition animations such as shared element transitions.")
+  }
 }
 
 kotlin {
-  androidTarget()
+  listOf(
+    iosX64(),
+    iosArm64(),
+    iosSimulatorArm64(),
+    macosArm64()
+  ).forEach {
+    it.binaries.framework {
+      baseName = "common"
+    }
+  }
+
+  js(IR) {
+    browser()
+    binaries.executable()
+  }
+
   jvm()
+  androidTarget()
 
   sourceSets {
     val commonMain by getting {
@@ -22,15 +53,16 @@ kotlin {
       }
     }
   }
-}
 
+  explicitApi()
+}
 
 android {
   compileSdk = Configuration.compileSdk
-    defaultConfig {
-      minSdk = Configuration.minSdk
-      targetSdk = Configuration.targetSdk
-    }
+  namespace = "com.skydoves.orbital"
+  defaultConfig {
+    minSdk = Configuration.minSdk
+  }
 
   buildFeatures {
     compose = true
@@ -43,12 +75,29 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion = Versions.COMPOSE_COMPILER
+    kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
+  }
+
+  packaging {
+    resources {
+      excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+    }
   }
 
   lint {
     abortOnError = false
   }
+}
+
+baselineProfile {
+  baselineProfileOutputDir = "../../src/androidMain/generated/baselineProfiles"
+  filter {
+    include("com.skydoves.orbital.**")
+  }
+}
+
+dependencies {
+  baselineProfile(project(":benchmark"))
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

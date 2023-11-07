@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbitaldemo
 
 import android.os.Bundle
@@ -27,6 +26,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -52,10 +52,12 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       OrbitalTheme {
-        OrbitalSharedElementTransitionExample()
-//         OrbitalMultipleSharedElementTransitionExample()
+        Surface {
+//          OrbitalSharedElementTransitionExample()
+          OrbitalMultipleSharedElementTransitionExample()
 //         OrbitalTransformationExample()
 //         OrbitalMovementExample()
+        }
       }
     }
   }
@@ -72,18 +74,18 @@ private fun OrbitalTransformationExample() {
         Modifier.size(100.dp, 220.dp)
       }.animateTransformation(this, transformationSpec),
       imageModel = { MockUtils.getMockPoster().poster },
-      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit),
     )
   }
 
   Orbital(
     modifier = Modifier
-      .clickable { isTransformed = !isTransformed }
+      .clickable { isTransformed = !isTransformed },
   ) {
     Column(
       Modifier.fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally,
-      verticalArrangement = Arrangement.Center
+      verticalArrangement = Arrangement.Center,
     ) {
       poster()
     }
@@ -101,19 +103,19 @@ private fun OrbitalMovementExample() {
         Modifier.size(130.dp, 220.dp)
       }.animateMovement(this, movementSpec),
       imageModel = { ItemUtils.urls[3] },
-      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit),
     )
   }
 
   Orbital(
     modifier = Modifier
-      .clickable { isTransformed = !isTransformed }
+      .clickable { isTransformed = !isTransformed },
   ) {
     if (isTransformed) {
       Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
       ) {
         poster()
       }
@@ -123,7 +125,7 @@ private fun OrbitalMovementExample() {
           .fillMaxSize()
           .padding(20.dp),
         horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.Bottom
+        verticalArrangement = Arrangement.Bottom,
       ) {
         poster()
       }
@@ -144,22 +146,22 @@ private fun OrbitalSharedElementTransitionExample() {
       }.animateSharedElementTransition(
         this,
         SpringSpec(stiffness = 500f),
-        SpringSpec(stiffness = 500f)
+        SpringSpec(stiffness = 500f),
       ),
       imageModel = { item.poster },
-      imageOptions = ImageOptions(contentScale = ContentScale.Fit)
+      imageOptions = ImageOptions(contentScale = ContentScale.Fit),
     )
   }
 
   Orbital(
     modifier = Modifier
-      .clickable { isTransformed = !isTransformed }
+      .clickable { isTransformed = !isTransformed },
   ) {
     if (isTransformed) {
       PosterDetails(
         poster = item,
         sharedElementContent = { poster() },
-        pressOnBack = {}
+        pressOnBack = {},
       )
     } else {
       Column(
@@ -167,7 +169,7 @@ private fun OrbitalSharedElementTransitionExample() {
           .fillMaxSize()
           .padding(20.dp),
         horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.Bottom
+        verticalArrangement = Arrangement.Bottom,
       ) {
         poster()
       }
@@ -189,7 +191,7 @@ private fun OrbitalMultipleSharedElementTransitionExample() {
           .animateSharedElementTransition(this, movementSpec, transformationSpec)
           .padding(8.dp),
         imageModel = { item.poster },
-        imageOptions = ImageOptions(contentScale = ContentScale.Fit)
+        imageOptions = ImageOptions(contentScale = ContentScale.Fit),
       )
     }
   }
@@ -203,15 +205,15 @@ private fun OrbitalMultipleSharedElementTransitionExample() {
       Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
       ) {
         items()
       }
     },
     onTransformedContent = {
       Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
       ) { items() }
-    }
+    },
   )
 }

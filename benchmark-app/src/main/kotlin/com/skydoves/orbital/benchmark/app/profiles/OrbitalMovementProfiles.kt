@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbital.benchmark.app.profiles
 
 import androidx.compose.foundation.background
@@ -48,7 +47,7 @@ fun OrbitalMovementProfiles() {
         Modifier.size(30.dp, 30.dp)
       }
         .background(Color.Green)
-        .animateMovement(this, movementSpec)
+        .animateMovement(this, movementSpec),
     )
   }
 
@@ -61,7 +60,7 @@ fun OrbitalMovementProfiles() {
     onStartContent = {
       Column(
         horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
       ) {
         item()
       }
@@ -69,10 +68,10 @@ fun OrbitalMovementProfiles() {
     onTransformedContent = {
       Column(
         horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
       ) {
         item()
       }
-    }
+    },
   )
 }

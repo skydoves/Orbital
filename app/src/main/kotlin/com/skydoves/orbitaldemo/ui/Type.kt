@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbitaldemo.ui
 
 import androidx.compose.material.Typography
@@ -29,26 +28,26 @@ val DarkTypography = Typography(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Bold,
     color = Color.White,
-    fontSize = 28.sp
+    fontSize = 28.sp,
   ),
   h2 = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Bold,
     color = Color.White,
-    fontSize = 21.sp
+    fontSize = 21.sp,
   ),
   body1 = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
     color = Color.White,
-    fontSize = 14.sp
+    fontSize = 14.sp,
   ),
   body2 = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
     color = white87,
-    fontSize = 14.sp
-  )
+    fontSize = 14.sp,
+  ),
 )
 
 // set of light material typography styles to start with.
@@ -57,24 +56,24 @@ val LightTypography = Typography(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Bold,
     color = background900,
-    fontSize = 28.sp
+    fontSize = 28.sp,
   ),
   h2 = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Bold,
     color = background900,
-    fontSize = 21.sp
+    fontSize = 21.sp,
   ),
   body1 = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
     color = background800,
-    fontSize = 14.sp
+    fontSize = 14.sp,
   ),
   body2 = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
     color = background800,
-    fontSize = 14.sp
-  )
+    fontSize = 14.sp,
+  ),
 )

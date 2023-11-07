@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbitaldemo.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,12 +24,12 @@ import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
   background = background,
-  onBackground = background800,
+  surface = background800,
   primary = purple200,
   primaryVariant = purple500,
   secondary = purple500,
   onPrimary = Color.White,
-  onSecondary = Color.White
+  onSecondary = Color.White,
 )
 
 private val LightColorPalette = lightColors(
@@ -40,13 +39,13 @@ private val LightColorPalette = lightColors(
   primaryVariant = purple500,
   secondary = purple500,
   onPrimary = Color.White,
-  onSecondary = Color.White
+  onSecondary = Color.White,
 )
 
 @Composable
 fun OrbitalTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable () -> Unit
+  content: @Composable () -> Unit,
 ) {
   val colors = if (darkTheme) {
     DarkColorPalette
@@ -63,6 +62,6 @@ fun OrbitalTheme(
   MaterialTheme(
     colors = colors,
     typography = typography,
-    content = content
+    content = content,
   )
 }

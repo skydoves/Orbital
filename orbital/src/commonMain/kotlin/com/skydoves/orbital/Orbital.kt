@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2023 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.skydoves.orbital
 
 import androidx.compose.runtime.Composable
@@ -24,7 +23,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.LookaheadLayout
 import androidx.compose.ui.layout.LookaheadScope
 import androidx.compose.ui.layout.MeasurePolicy
-import java.lang.Integer.max
+import kotlin.math.max
 
 /**
  * Orbital is a layout that measures and placements internally, and collocates the measured layouts
@@ -40,7 +39,7 @@ import java.lang.Integer.max
 public fun Orbital(
   modifier: Modifier = Modifier,
   measurePolicy: MeasurePolicy = internalMeasurePolicy,
-  content: @Composable OrbitalScope.() -> Unit
+  content: @Composable OrbitalScope.() -> Unit,
 ) {
   LookaheadScope {
     Layout(
@@ -49,7 +48,7 @@ public fun Orbital(
         orbitalScope.content()
       },
       modifier = modifier,
-      measurePolicy = measurePolicy
+      measurePolicy = measurePolicy,
     )
   }
 }
@@ -72,7 +71,7 @@ public fun Orbital(
   isTransformed: Boolean,
   measurePolicy: MeasurePolicy = internalMeasurePolicy,
   onStartContent: @Composable OrbitalScope.() -> Unit,
-  onTransformedContent: @Composable OrbitalScope.() -> Unit
+  onTransformedContent: @Composable OrbitalScope.() -> Unit,
 ) {
   Orbital(
     modifier = modifier,
@@ -83,7 +82,7 @@ public fun Orbital(
       } else {
         onTransformedContent()
       }
-    }
+    },
   )
 }
 
