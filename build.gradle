@@ -17,6 +17,7 @@ buildscript {
     classpath Dependencies.dokka
     classpath Dependencies.kotlinBinaryValidator
     classpath Dependencies.hiltPlugin
+    classpath Dependencies.composePlugin
   }
 }
 

@@ -18,8 +18,11 @@ package com.skydoves.orbital
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.LookaheadLayout
+import androidx.compose.ui.layout.LookaheadScope
 import androidx.compose.ui.layout.MeasurePolicy
 import java.lang.Integer.max
 
@@ -32,20 +35,23 @@ import java.lang.Integer.max
  * @param measurePolicy The function that defines the measurement and layout.
  * @param content A Composable that receives [OrbitalScope].
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun Orbital(
   modifier: Modifier = Modifier,
   measurePolicy: MeasurePolicy = internalMeasurePolicy,
   content: @Composable OrbitalScope.() -> Unit
 ) {
-  LookaheadLayout(
-    content = {
-      val orbitalScope = remember { OrbitalScope(this) }
-      orbitalScope.content()
-    },
-    modifier = modifier,
-    measurePolicy = measurePolicy
-  )
+  LookaheadScope {
+    Layout(
+      content = {
+        val orbitalScope = remember { OrbitalScope(this) }
+        orbitalScope.content()
+      },
+      modifier = modifier,
+      measurePolicy = measurePolicy
+    )
+  }
 }
 
 /**

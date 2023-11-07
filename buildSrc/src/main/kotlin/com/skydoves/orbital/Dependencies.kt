@@ -4,12 +4,12 @@ object Versions {
   internal const val ANDROID_GRADLE_PLUGIN = "7.4.1"
   internal const val ANDROID_GRADLE_SPOTLESS = "6.7.0"
   internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.3.0"
-  internal const val KOTLIN = "1.8.10"
-  internal const val KOTLIN_GRADLE_DOKKA = "1.8.10"
+  internal const val KOTLIN = "1.9.10"
+  internal const val KOTLIN_GRADLE_DOKKA = "1.9.10"
   internal const val KOTLIN_BINARY_VALIDATOR = "0.13.0"
 
-  internal const val COMPOSE = "1.3.1"
-  internal const val COMPOSE_COMPILER = "1.4.4"
+  internal const val COMPOSE = "1.5.3"
+  const val COMPOSE_COMPILER = "1.5.3"
   internal const val COROUTINES = "1.6.4"
 
   internal const val RULES = "1.4.0"
@@ -39,6 +39,8 @@ object Dependencies {
     "com.diffplug.spotless:spotless-plugin-gradle:${Versions.ANDROID_GRADLE_SPOTLESS}"
   const val dokka = "org.jetbrains.dokka:dokka-gradle-plugin:${Versions.KOTLIN_GRADLE_DOKKA}"
   const val hiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}"
+  const val composePlugin =
+    "org.jetbrains.compose:compose-gradle-plugin:${Versions.COMPOSE_COMPILER}"
   const val kotlinBinaryValidator =
     "org.jetbrains.kotlinx:binary-compatibility-validator:${Versions.KOTLIN_BINARY_VALIDATOR}"
 
