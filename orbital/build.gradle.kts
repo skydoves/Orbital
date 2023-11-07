@@ -1,5 +1,4 @@
 import com.skydoves.orbital.Configuration
-import com.skydoves.orbital.Dependencies
 import com.skydoves.orbital.Versions
 
 plugins {
@@ -11,6 +10,17 @@ plugins {
 }
 
 kotlin {
+  listOf(
+    iosX64(),
+    iosArm64(),
+    iosSimulatorArm64(),
+    macosArm64()
+  ).forEach {
+    it.binaries.framework {
+      baseName = "common"
+    }
+  }
+
   androidTarget()
   jvm()
 
@@ -22,15 +32,16 @@ kotlin {
       }
     }
   }
+
+  explicitApi()
 }
 
 
 android {
   compileSdk = Configuration.compileSdk
-    defaultConfig {
-      minSdk = Configuration.minSdk
-      targetSdk = Configuration.targetSdk
-    }
+  defaultConfig {
+    minSdk = Configuration.minSdk
+  }
 
   buildFeatures {
     compose = true
