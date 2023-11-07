@@ -37,8 +37,13 @@ kotlin {
     }
   }
 
-  androidTarget()
+  js(IR) {
+    browser()
+    binaries.executable()
+  }
+
   jvm()
+  androidTarget()
 
   sourceSets {
     val commonMain by getting {
