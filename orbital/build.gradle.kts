@@ -90,7 +90,7 @@ android {
 }
 
 baselineProfile {
-  baselineProfileOutputDir = "../../src/androidMain/generated/baselineProfiles"
+  baselineProfileOutputDir = "../../src/androidMain"
   filter {
     include("com.skydoves.orbital.**")
   }
