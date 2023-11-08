@@ -30,6 +30,7 @@ kotlin {
   iosArm64()
   iosSimulatorArm64()
   macosArm64()
+  macosX64()
 
   js(IR) {
     browser()
@@ -45,6 +46,28 @@ kotlin {
         implementation(compose.ui)
         implementation(compose.animation)
       }
+    }
+
+    val jvmMain by getting
+    val jvmTest by getting
+
+    val appleMain by creating {
+      dependsOn(commonMain)
+    }
+    val macosArm64Main by getting {
+      dependsOn(appleMain)
+    }
+    val macosX64Main by getting {
+      dependsOn(appleMain)
+    }
+    val iosSimulatorArm64Main by getting {
+      dependsOn(appleMain)
+    }
+    val iosArm64Main by getting {
+      dependsOn(appleMain)
+    }
+    val iosX64Main by getting {
+      dependsOn(appleMain)
     }
   }
 
