@@ -87,11 +87,11 @@ HSPLcom/skydoves/orbital/OrbitalKt;-><clinit>()V
 HPLcom/skydoves/orbital/OrbitalKt;->Orbital(Landroidx/compose/ui/Modifier;Landroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 HSPLcom/skydoves/orbital/OrbitalKt;->Orbital(Landroidx/compose/ui/Modifier;ZLandroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 Lcom/skydoves/orbital/OrbitalKt$Orbital$1;
-HSPLcom/skydoves/orbital/OrbitalKt$Orbital$1;-><init>(Landroidx/compose/ui/Modifier;Landroidx/compose/ui/layout/MeasurePolicy;ILkotlin/jvm/functions/Function3;)V
+HSPLcom/skydoves/orbital/OrbitalKt$Orbital$1;-><init>(Landroidx/compose/ui/Modifier;Landroidx/compose/ui/layout/MeasurePolicy;Lkotlin/jvm/functions/Function3;)V
 HPLcom/skydoves/orbital/OrbitalKt$Orbital$1;->invoke(Landroidx/compose/ui/layout/LookaheadScope;Landroidx/compose/runtime/Composer;I)V
 HSPLcom/skydoves/orbital/OrbitalKt$Orbital$1;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 Lcom/skydoves/orbital/OrbitalKt$Orbital$3;
-HSPLcom/skydoves/orbital/OrbitalKt$Orbital$3;-><init>(ZLkotlin/jvm/functions/Function3;ILkotlin/jvm/functions/Function3;)V
+HSPLcom/skydoves/orbital/OrbitalKt$Orbital$3;-><init>(ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;)V
 HSPLcom/skydoves/orbital/OrbitalKt$Orbital$3;->invoke(Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/runtime/Composer;I)V
 HSPLcom/skydoves/orbital/OrbitalKt$Orbital$3;->invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 Lcom/skydoves/orbital/OrbitalKt$internalMeasurePolicy$1;
@@ -128,7 +128,7 @@ HSPLcom/skydoves/orbital/benchmark/app/profiles/AnimationSpecsKt;->getMovementSp
 HSPLcom/skydoves/orbital/benchmark/app/profiles/AnimationSpecsKt;->getTransformationSpec()Landroidx/compose/animation/core/SpringSpec;
 Lcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt;
 HSPLcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt;->OrbitalMovementProfiles$lambda$0(Landroidx/compose/runtime/MutableState;)Z
-HPLcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt;->OrbitalMovementProfiles(Landroidx/compose/runtime/Composer;I)V
+HSPLcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt;->OrbitalMovementProfiles(Landroidx/compose/runtime/Composer;I)V
 HSPLcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt;->access$OrbitalMovementProfiles$lambda$0(Landroidx/compose/runtime/MutableState;)Z
 Lcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt$OrbitalMovementProfiles$1$1;
 HSPLcom/skydoves/orbital/benchmark/app/profiles/OrbitalMovementProfilesKt$OrbitalMovementProfiles$1$1;-><init>(Landroidx/compose/runtime/MutableState;)V
