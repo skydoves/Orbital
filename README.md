@@ -29,11 +29,11 @@
 Add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orbital:0.2.4"
+    implementation "com.github.skydoves:orbital:0.3.0"
 }
 ```
 
-> **Note**: This is an experimental library that demonstrates various animations with Jetpack Compose. Please make sure that your project uses Jetpack Compose `1.3.1`, Compose Compiler `1.4.0`, and Kotlin `1.8.0`.
+> **Note**: This is an experimental library that demonstrates various animations with Jetpack Compose. Please make sure that your project uses Jetpack Compose `1.5.4`, Compose Compiler `1.5.4`, and Kotlin `1.9.20`.
 
 ## Usage
 
