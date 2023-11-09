@@ -1,9 +1,10 @@
 import com.skydoves.orbital.Configuration
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  kotlin("multiplatform")
   id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.kotlin.multiplatform.get().pluginId)
   id(libs.plugins.jetbrains.compose.get().pluginId)
   id(libs.plugins.nexus.plugin.get().pluginId)
   id(libs.plugins.baseline.profile.get().pluginId)
@@ -26,25 +27,42 @@ mavenPublishing {
 }
 
 kotlin {
-  listOf(
-    iosX64(),
-    iosArm64(),
-    iosSimulatorArm64(),
-    macosX64(),
-    macosArm64(),
-  ).forEach {
-    it.binaries.framework {
-      baseName = "common"
-    }
-  }
-
+  jvm("desktop")
+  iosX64()
+  iosArm64()
+  iosSimulatorArm64()
+  macosX64()
+  macosArm64()
   js(IR) {
     browser()
-    binaries.executable()
+    nodejs()
   }
-
-  jvm()
-
+  @OptIn(ExperimentalKotlinGradlePluginApi::class)
+  applyHierarchyTemplate {
+    common {
+      group("jvm") {
+        withAndroidTarget()
+        withJvm()
+      }
+      group("skia") {
+        withJvm()
+        group("darwin") {
+          group("apple") {
+            group("ios") {
+              withIosX64()
+              withIosArm64()
+              withIosSimulatorArm64()
+            }
+            group("macos") {
+              withMacosX64()
+              withMacosArm64()
+            }
+          }
+          withJs()
+        }
+      }
+    }
+  }
   androidTarget {
     publishLibraryVariants("release")
   }
@@ -56,9 +74,16 @@ kotlin {
       languageSettings.optIn("androidx.compose.ui.ExperimentalComposeUiApi")
     }
     commonMain.dependencies {
-      implementation(compose.ui)
-      implementation(compose.animation)
-      implementation(compose.runtime)
+      api(compose.ui)
+      api(compose.animation)
+      api(compose.runtime)
+    }
+
+    val noAndroidMain by creating {
+      dependsOn(commonMain.get())
+      jvmMain.get().dependsOn(this)
+      appleMain.get().dependsOn(this)
+      jsMain.get().dependsOn(this)
     }
   }
 
@@ -105,11 +130,6 @@ baselineProfile {
 }
 
 dependencies {
-  implementation(platform(libs.androidx.compose.bom))
-  implementation(libs.androidx.compose.animation)
-  implementation(libs.androidx.compose.runtime)
-  implementation(libs.androidx.compose.ui)
-
   baselineProfile(project(":benchmark"))
 }
 
