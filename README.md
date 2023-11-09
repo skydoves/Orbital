@@ -42,7 +42,7 @@ For Kotlin Multiplatform, add the `compileOnly` dependency below to your **modul
 sourceSets {
     val commonMain by getting {
         dependencies {
-            compileOnly("com.github.skydoves:orbital:$version")
+            implementation("com.github.skydoves:orbital:$version")
         }
     }
 }
