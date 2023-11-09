@@ -41,11 +41,6 @@ kotlin {
     browser()
   }
 
-  @Suppress("OPT_IN_USAGE")
-  wasmJs {
-    browser()
-  }
-
   applyDefaultHierarchyTemplate()
 
   sourceSets {
