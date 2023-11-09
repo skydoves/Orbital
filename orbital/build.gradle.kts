@@ -26,19 +26,24 @@ mavenPublishing {
 }
 
 kotlin {
+  androidTarget { publishLibraryVariants("release") }
+
   jvm("desktop")
+
   iosX64()
   iosArm64()
   iosSimulatorArm64()
+
   macosX64()
   macosArm64()
+
   js(IR) {
     browser()
-    nodejs()
   }
 
-  androidTarget {
-    publishLibraryVariants("release")
+  @Suppress("OPT_IN_USAGE")
+  wasmJs {
+    browser()
   }
 
   applyDefaultHierarchyTemplate()
@@ -47,10 +52,12 @@ kotlin {
     all {
       languageSettings.optIn("androidx.compose.ui.ExperimentalComposeUiApi")
     }
-    commonMain.dependencies {
-      implementation(compose.ui)
-      implementation(compose.animation)
-      implementation(compose.runtime)
+    val commonMain by getting {
+      dependencies {
+        implementation(compose.ui)
+        implementation(compose.animation)
+        implementation(compose.runtime)
+      }
     }
   }
 
