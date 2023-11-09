@@ -19,9 +19,9 @@ plugins {
   alias(libs.plugins.kotlin.android) apply false
   alias(libs.plugins.baseline.profile) apply false
   alias(libs.plugins.jetbrains.compose) apply false
-  alias(libs.plugins.nexus.plugin) apply false
-  alias(libs.plugins.spotless)
   alias(libs.plugins.kotlin.binary.compatibility)
+  alias(libs.plugins.nexus.plugin)
+  alias(libs.plugins.spotless)
   alias(libs.plugins.dokka)
 }
 
