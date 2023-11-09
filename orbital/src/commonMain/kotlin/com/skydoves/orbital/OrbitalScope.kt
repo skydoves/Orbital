@@ -15,13 +15,10 @@
  */
 package com.skydoves.orbital
 
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.layout.LookaheadLayoutScope
 import androidx.compose.ui.layout.LookaheadScope
 
 /**
- * OrbitalScope is a scope that wraps [LookaheadLayoutScope] to apply animations.
+ * OrbitalScope is a scope that wraps [LookaheadScope] to apply animations.
  */
-@OptIn(ExperimentalComposeUiApi::class)
 public class OrbitalScope internal constructor(lookaheadScope: LookaheadScope) :
   LookaheadScope by lookaheadScope
