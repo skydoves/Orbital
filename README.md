@@ -12,7 +12,7 @@
 </p><br>
 
 <p align="center">
-🪐 Jetpack Compose animation library that allows you to implement animations such as shared element transition.
+🪐 Jetpack Compose animation library that allows you to implement animations such as shared element transition. This library support Kotlin Multiplatform (Android, iOS, Desktop, macOS, and js)
 </p><br>
 
 <p align="center">
@@ -27,13 +27,26 @@
 ### Gradle
 
 Add the dependency below to your **module**'s `build.gradle` file:
+
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orbital:0.3.1"
+    implementation("com.github.skydoves:orbital:0.3.1")
 }
 ```
 
 > **Note**: This is an experimental library that demonstrates various animations with Jetpack Compose. Please make sure that your project uses Jetpack Compose `1.5.4`, Compose Compiler `1.5.4`, and Kotlin `1.9.20`.
+
+For Kotlin Multiplatform, add the `compileOnly` dependency below to your **module**'s `build.gradle.kts` file:
+
+```gradle
+sourceSets {
+    val commonMain by getting {
+        dependencies {
+            compileOnly("com.github.skydoves:orbital:$version")
+        }
+    }
+}
+```
 
 ## Usage
 
