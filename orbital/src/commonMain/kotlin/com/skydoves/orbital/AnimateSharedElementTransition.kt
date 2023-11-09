@@ -24,7 +24,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
@@ -42,7 +41,6 @@ import androidx.compose.ui.unit.round
  * @param movementSpec An [FiniteAnimationSpec] which has [IntOffset] as a generic type.
  * @param transformSpec An [FiniteAnimationSpec] which has [IntSize] as a generic type.
  */
-@OptIn(ExperimentalComposeUiApi::class)
 public fun Modifier.animateSharedElementTransition(
   orbitalScope: OrbitalScope,
   movementSpec: FiniteAnimationSpec<IntOffset> = spring(

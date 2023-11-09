@@ -30,8 +30,8 @@ kotlin {
     iosX64(),
     iosArm64(),
     iosSimulatorArm64(),
-    macosArm64(),
     macosX64(),
+    macosArm64(),
   ).forEach {
     it.binaries.framework {
       baseName = "common"
@@ -52,11 +52,13 @@ kotlin {
   applyDefaultHierarchyTemplate()
 
   sourceSets {
-    val commonMain by getting {
-      dependencies {
-        implementation(compose.ui)
-        implementation(compose.animation)
-      }
+    all {
+      languageSettings.optIn("androidx.compose.ui.ExperimentalComposeUiApi")
+    }
+    commonMain.dependencies {
+      implementation(compose.ui)
+      implementation(compose.animation)
+      implementation(compose.runtime)
     }
   }
 
@@ -103,6 +105,11 @@ baselineProfile {
 }
 
 dependencies {
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.androidx.compose.animation)
+  implementation(libs.androidx.compose.runtime)
+  implementation(libs.androidx.compose.ui)
+
   baselineProfile(project(":benchmark"))
 }
 
