@@ -1,5 +1,4 @@
 import com.skydoves.orbital.Configuration
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -37,32 +36,7 @@ kotlin {
     browser()
     nodejs()
   }
-  @OptIn(ExperimentalKotlinGradlePluginApi::class)
-  applyHierarchyTemplate {
-    common {
-      group("jvm") {
-        withAndroidTarget()
-        withJvm()
-      }
-      group("skia") {
-        withJvm()
-        group("darwin") {
-          group("apple") {
-            group("ios") {
-              withIosX64()
-              withIosArm64()
-              withIosSimulatorArm64()
-            }
-            group("macos") {
-              withMacosX64()
-              withMacosArm64()
-            }
-          }
-          withJs()
-        }
-      }
-    }
-  }
+
   androidTarget {
     publishLibraryVariants("release")
   }
@@ -74,16 +48,9 @@ kotlin {
       languageSettings.optIn("androidx.compose.ui.ExperimentalComposeUiApi")
     }
     commonMain.dependencies {
-      api(compose.ui)
-      api(compose.animation)
-      api(compose.runtime)
-    }
-
-    val noAndroidMain by creating {
-      dependsOn(commonMain.get())
-      jvmMain.get().dependsOn(this)
-      appleMain.get().dependsOn(this)
-      jsMain.get().dependsOn(this)
+      implementation(compose.ui)
+      implementation(compose.animation)
+      implementation(compose.runtime)
     }
   }
 

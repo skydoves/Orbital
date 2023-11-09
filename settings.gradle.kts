@@ -3,6 +3,7 @@ pluginManagement {
     gradlePluginPortal()
     google()
     mavenCentral()
+    maven { url = uri("https://plugins.gradle.org/m2/") }
   }
 }
 dependencyResolutionManagement {
@@ -10,6 +11,7 @@ dependencyResolutionManagement {
   repositories {
     google()
     mavenCentral()
+    maven { url = uri("https://plugins.gradle.org/m2/") }
   }
 }
 rootProject.name = "OrbitalDemo"
