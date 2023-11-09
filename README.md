@@ -36,7 +36,7 @@ dependencies {
 
 > **Note**: This is an experimental library that demonstrates various animations with Jetpack Compose. Please make sure that your project uses Jetpack Compose `1.5.4`, Compose Compiler `1.5.4`, and Kotlin `1.9.20`.
 
-For Kotlin Multiplatform, add the `compileOnly` dependency below to your **module**'s `build.gradle.kts` file:
+For Kotlin Multiplatform, add the dependency below to your **module**'s `build.gradle.kts` file:
 
 ```gradle
 sourceSets {
