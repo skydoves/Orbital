@@ -40,3 +40,7 @@ public final class com/skydoves/orbital/RememberMovablesKt {
 	public static final fun rememberContentWithOrbitalScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)Lkotlin/jvm/functions/Function3;
 }
 
+public final class com/skydoves/orbital/RememberableContentKt {
+	public static final fun rememberMovableContentOf (Ljava/lang/Object;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)Lkotlin/jvm/functions/Function2;
+}
+

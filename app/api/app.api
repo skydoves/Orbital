@@ -81,6 +81,28 @@ public final class com/skydoves/orbitaldemo/PosterDetailsKt {
 	public static final fun PosterDetails (Lcom/skydoves/orbitaldemo/Poster;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
 }
 
+public final class com/skydoves/orbitaldemo/mock/Poster {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/skydoves/orbitaldemo/mock/Poster;
+	public static synthetic fun copy$default (Lcom/skydoves/orbitaldemo/mock/Poster;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/skydoves/orbitaldemo/mock/Poster;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getGif ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPlaytime ()Ljava/lang/String;
+	public final fun getPoster ()Ljava/lang/String;
+	public final fun getRelease ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/skydoves/orbitaldemo/ui/ColorsKt {
 	public static final fun getBackground ()J
 	public static final fun getBackground800 ()J
