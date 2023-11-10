@@ -251,6 +251,105 @@ The example below shows how to implement shared element transition with multipe 
   )
 ```
 
+### Shared Element Transition With LazyList
+
+<img src="previews/preview4.gif" width="300px" align="center">
+
+The provided code example illustrates the implementation of shared element transformation (container transform) with a lazy list, such as `LazyColumn` and `LazyRow`. The `OrbitalScope` function initiates a scope in which all layout scopes will be measured and pre-calculated for size and position across all child layouts.   
+
+```kotlin
+@Composable
+internal fun OrbitalLazyColumnSample() {
+  val mocks = MockUtils.getMockPosters()
+
+  OrbitalScope {
+    LazyColumn {
+      items(mocks, key = { it.name }) { poster ->
+        var expanded by rememberSaveable { mutableStateOf(false) }
+        AnimatedVisibility(
+          remember { MutableTransitionState(false) }
+            .apply { targetState = true },
+          enter = slideInHorizontally { 20 } + fadeIn(),
+        ) {
+          Surface(
+            shape = RoundedCornerShape(10.dp),
+            color = poster.color,
+            modifier = Modifier
+              .fillMaxWidth()
+              .clickable {
+                expanded = !expanded
+              },
+          ) {
+            OrbitalScope {
+              val title = rememberMovableContentOf {
+                Column(
+                  modifier = Modifier
+                    .padding(10.dp)
+                    .animateBounds(Modifier),
+                ) {
+                  Text(
+                    text = poster.name,
+                    fontSize = 18.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                  )
+
+                  Text(
+                    text = poster.description,
+                    color = Color.Gray,
+                    fontSize = 12.sp,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold,
+                  )
+                }
+              }
+              val image = rememberMovableContentOf {
+                GlideImage(
+                  imageModel = { poster.poster },
+                  component = rememberImageComponent {
+                    +CrossfadePlugin()
+                  },
+                  modifier = Modifier
+                    .padding(10.dp)
+                    .animateBounds(
+                      if (expanded) {
+                        Modifier.fillMaxWidth()
+                      } else {
+                        Modifier.size(80.dp)
+                      },
+                      spring(stiffness = Spring.StiffnessLow),
+                    )
+                    .clip(RoundedCornerShape(5.dp)),
+                  imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
+                )
+              }
+
+              if (expanded) {
+                Column {
+                  image()
+                  title()
+                }
+              } else {
+                Row {
+                  image()
+                  title()
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+You should bear in mind these three aspects:
+
+- `OrbitalScope`: The `OrbitalScope` function starts a scope, which measures and pre-calculates the layout size and position for all child layouts. Fundamentally, it initiates a reusable Compose node for the given content, which makes all magic things under the hood. You can utilize the `OrbitalScope` in nested ways based on your specific scenarios, as illustrated in the code above.
+- `rememberMovableContentOf`: Utilize this function to remember a movable Composable function, allowing it to be relocated within the Compose tree. All items intended for transformation should be pre-defined using this function, enabling you to display different content based on various situations. All content defined using `rememberMovableContentOf` must be employed within the `OrbitalScope`. 
+- `animateBounds`: This serves as the delegate of the `Modifier` to compute distinct layout sizes based on various situations. It should be used in conjunction with the `rememberMovableContentOf` function.
 
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/Orbital/stargazers)__ for this repository. :star: <br>

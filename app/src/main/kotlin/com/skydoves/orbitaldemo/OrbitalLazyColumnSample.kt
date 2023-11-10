@@ -43,7 +43,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,7 +54,6 @@ import com.skydoves.orbital.OrbitalScope
 import com.skydoves.orbital.animateBounds
 import com.skydoves.orbital.rememberMovableContentOf
 
-@Preview
 @Composable
 internal fun OrbitalLazyColumnSample() {
   val mocks = MockUtils.getMockPosters()
