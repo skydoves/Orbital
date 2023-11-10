@@ -32,10 +32,6 @@ public final class com/skydoves/orbital/OrbitalScope : androidx/compose/ui/layou
 	public fun toLookaheadCoordinates (Landroidx/compose/ui/layout/LayoutCoordinates;)Landroidx/compose/ui/layout/LayoutCoordinates;
 }
 
-public final class com/skydoves/orbital/OrbitalScopeKt {
-	public static final fun OrbitalScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
-}
-
 public final class com/skydoves/orbital/RememberMovablesKt {
 	public static final fun rememberContentWithOrbitalScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)Lkotlin/jvm/functions/Function3;
 }

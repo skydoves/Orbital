@@ -262,7 +262,7 @@ The provided code example illustrates the implementation of shared element trans
 internal fun OrbitalLazyColumnSample() {
   val mocks = MockUtils.getMockPosters()
 
-  OrbitalScope {
+  Orbital {
     LazyColumn {
       items(mocks, key = { it.name }) { poster ->
         var expanded by rememberSaveable { mutableStateOf(false) }
@@ -280,7 +280,7 @@ internal fun OrbitalLazyColumnSample() {
                 expanded = !expanded
               },
           ) {
-            OrbitalScope {
+            Orbital {
               val title = rememberMovableContentOf {
                 Column(
                   modifier = Modifier
@@ -347,8 +347,8 @@ internal fun OrbitalLazyColumnSample() {
 
 You should bear in mind these three aspects:
 
-- **OrbitalScope**: The `OrbitalScope` function starts a scope, which measures and pre-calculates the layout size and position for all child layouts. Fundamentally, it initiates a reusable Compose node for the given content, which makes all magic things under the hood. You can utilize the `OrbitalScope` in nested ways based on your specific scenarios, as illustrated in the code above.
-- **rememberMovableContentOf**: Utilize this function to remember a movable Composable function, allowing it to be relocated within the Compose tree. All items intended for transformation should be pre-defined using this function, enabling you to display different content based on various situations. All content defined using `rememberMovableContentOf` must be employed within the `OrbitalScope`. 
+- **Orbital**: The `Orbital` function starts a scope, which measures and pre-calculates the layout size and position for all child layouts. Fundamentally, it initiates a reusable Compose node for the given content, which makes all magic things under the hood. You can utilize the `Orbital` in nested ways based on your specific scenarios, as illustrated in the code above.
+- **rememberMovableContentOf**: Utilize this function to remember a movable Composable function, allowing it to be relocated within the Compose tree. All items intended for transformation should be pre-defined using this function, enabling you to display different content based on various situations. All content defined using `rememberMovableContentOf` must be employed within the `Orbital`. 
 - **animateBounds**: This serves as the delegate of the `Modifier` to compute distinct layout sizes based on various situations. It should be used in conjunction with the `rememberMovableContentOf` function.
 
 ## Find this repository useful? :heart:

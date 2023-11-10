@@ -50,7 +50,7 @@ import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
 import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
-import com.skydoves.orbital.OrbitalScope
+import com.skydoves.orbital.Orbital
 import com.skydoves.orbital.animateBounds
 import com.skydoves.orbital.rememberMovableContentOf
 
@@ -58,7 +58,7 @@ import com.skydoves.orbital.rememberMovableContentOf
 internal fun OrbitalLazyColumnSample() {
   val mocks = MockUtils.getMockPosters()
 
-  OrbitalScope {
+  Orbital {
     LazyColumn {
       items(mocks, key = { it.name }) { poster ->
         var expanded by rememberSaveable { mutableStateOf(false) }
@@ -76,7 +76,7 @@ internal fun OrbitalLazyColumnSample() {
                 expanded = !expanded
               },
           ) {
-            OrbitalScope {
+            Orbital {
               val title = rememberMovableContentOf {
                 Column(
                   modifier = Modifier
