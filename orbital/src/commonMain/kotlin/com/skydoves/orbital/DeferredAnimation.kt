@@ -19,41 +19,42 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.TwoWayConverter
-import androidx.compose.animation.core.spring
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 internal class DeferredAnimation<T, V : AnimationVector>(
-  coroutineScope: CoroutineScope,
-  vectorConverter: TwoWayConverter<T, V>,
+  private val coroutineScope: CoroutineScope,
+  private val vectorConverter: TwoWayConverter<T, V>,
 ) {
   val value: T?
     get() = animatable?.value ?: target
   var target: T? by mutableStateOf(null)
     private set
-  private var animationSpec: FiniteAnimationSpec<T> = spring()
   private var animatable: Animatable<T, V>? = null
 
-  init {
-    coroutineScope.launch {
-      snapshotFlow { target }.collect { target ->
-        if (target != null && target != animatable?.targetValue) {
-          animatable?.run {
-            launch { animateTo(target, animationSpec) }
-          } ?: Animatable(target, vectorConverter).let {
-            animatable = it
-          }
+  internal val isActive: Boolean
+    get() = target != animatable?.targetValue || animatable?.isRunning == true
+
+  fun updateTarget(
+    targetValue: T,
+    animationSpec: FiniteAnimationSpec<T>,
+  ): T {
+    target = targetValue
+    if (target != null && target != animatable?.targetValue) {
+      animatable?.run {
+        coroutineScope.launch {
+          animateTo(
+            targetValue,
+            animationSpec,
+          )
         }
+      } ?: Animatable(targetValue, vectorConverter).let {
+        animatable = it
       }
     }
-  }
-
-  fun updateTarget(targetValue: T, animationSpec: FiniteAnimationSpec<T>) {
-    target = targetValue
-    this.animationSpec = animationSpec
+    return animatable?.value ?: targetValue
   }
 }

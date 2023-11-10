@@ -23,6 +23,15 @@ public final class com/skydoves/orbitaldemo/ComposableSingletons$MainActivityKt 
 	public final fun getLambda-3$app_release ()Lkotlin/jvm/functions/Function2;
 }
 
+public final class com/skydoves/orbitaldemo/ComposableSingletons$OrbitalLazyColumnSampleKt {
+	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ComposableSingletons$OrbitalLazyColumnSampleKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function4;
+	public static field lambda-2 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$app_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda-2$app_release ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/skydoves/orbitaldemo/ItemUtils {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ItemUtils;
@@ -39,6 +48,11 @@ public final class com/skydoves/orbitaldemo/MockUtils {
 	public static final field INSTANCE Lcom/skydoves/orbitaldemo/MockUtils;
 	public final fun getMockPoster ()Lcom/skydoves/orbitaldemo/Poster;
 	public final fun getMockPosters ()Ljava/util/List;
+}
+
+public final class com/skydoves/orbitaldemo/OrbitalLazyColumnSampleKt {
+	public static final fun getNames ()Ljava/util/List;
+	public static final fun getRes ()Ljava/util/List;
 }
 
 public final class com/skydoves/orbitaldemo/Poster {

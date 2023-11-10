@@ -22,7 +22,7 @@ import androidx.compose.ui.layout.LookaheadScope
 /**
  * OrbitalScope is a scope that wraps [LookaheadScope] to apply animations.
  */
-public class OrbitalScope internal constructor(lookaheadScope: LookaheadScope) :
+public class OrbitalScope internal constructor(internal val lookaheadScope: LookaheadScope) :
   LookaheadScope by lookaheadScope
 
 /**

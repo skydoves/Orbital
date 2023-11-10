@@ -1,3 +1,8 @@
+public final class com/skydoves/orbital/AnimateBoundsKt {
+	public static final fun animateBounds (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ZLkotlin/jvm/functions/Function1;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateBounds$default (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
 public final class com/skydoves/orbital/AnimateMovementKt {
 	public static final fun animateMovement (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
 	public static synthetic fun animateMovement$default (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
