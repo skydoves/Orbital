@@ -74,4 +74,6 @@ dependencies {
   implementation(libs.androidx.compose.material.iconsExtended)
 
   implementation(libs.landscapist.glide)
+  implementation(libs.landscapist.placeholder)
+  implementation(libs.landscapist.animation)
 }

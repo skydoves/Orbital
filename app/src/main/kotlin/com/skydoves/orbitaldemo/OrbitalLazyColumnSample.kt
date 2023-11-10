@@ -21,7 +21,6 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInHorizontally
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +28,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -41,10 +41,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
+import com.skydoves.landscapist.components.rememberImageComponent
+import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.orbital.OrbitalScope
 import com.skydoves.orbital.animateBounds
 import com.skydoves.orbital.rememberMovableContentOf
@@ -52,10 +58,11 @@ import com.skydoves.orbital.rememberMovableContentOf
 @Preview
 @Composable
 internal fun OrbitalLazyColumnSample() {
+  val mocks = MockUtils.getMockPosters()
+
   OrbitalScope {
     LazyColumn {
-      items(10, key = { it }) {
-        val index = it % 3
+      items(mocks, key = { it.name }) { poster ->
         var expanded by rememberSaveable { mutableStateOf(false) }
         AnimatedVisibility(
           remember { MutableTransitionState(false) }
@@ -64,7 +71,7 @@ internal fun OrbitalLazyColumnSample() {
         ) {
           Surface(
             shape = RoundedCornerShape(10.dp),
-            color = pastelColors[index],
+            color = poster.color,
             modifier = Modifier
               .fillMaxWidth()
               .clickable {
@@ -73,17 +80,34 @@ internal fun OrbitalLazyColumnSample() {
           ) {
             OrbitalScope {
               val title = rememberMovableContentOf {
-                Text(
-                  names[index],
-                  Modifier
-                    .padding(20.dp)
+                Column(
+                  modifier = Modifier
+                    .padding(10.dp)
                     .animateBounds(Modifier),
-                )
+                ) {
+                  Text(
+                    text = poster.name,
+                    fontSize = 18.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold,
+                  )
+
+                  Text(
+                    text = poster.description,
+                    color = Color.Gray,
+                    fontSize = 12.sp,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold,
+                  )
+                }
               }
               val image = rememberMovableContentOf {
-                Image(
-                  painter = painterResource(res[index]),
-                  contentDescription = null,
+                GlideImage(
+                  imageModel = { poster.poster },
+                  component = rememberImageComponent {
+                    +CrossfadePlugin()
+                  },
                   modifier = Modifier
                     .padding(10.dp)
                     .animateBounds(
@@ -95,18 +119,14 @@ internal fun OrbitalLazyColumnSample() {
                       spring(stiffness = Spring.StiffnessLow),
                     )
                     .clip(RoundedCornerShape(5.dp)),
-                  contentScale = if (expanded) {
-                    ContentScale.FillWidth
-                  } else {
-                    ContentScale.Crop
-                  },
+                  imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
                 )
               }
 
               if (expanded) {
                 Column {
-                  title()
                   image()
+                  title()
                 }
               } else {
                 Row {
@@ -121,18 +141,3 @@ internal fun OrbitalLazyColumnSample() {
     }
   }
 }
-
-val names = listOf("YT", "Pepper", "Waffle", "Who?")
-val res = listOf(
-  R.drawable.poster,
-  R.drawable.poster,
-  R.drawable.poster,
-)
-
-internal val pastelColors = listOf(
-  Color(0xFFffd7d7),
-  Color(0xFFffe9d6),
-  Color(0xFFfffbd0),
-  Color(0xFFe3ffd9),
-  Color(0xFFd0fff8),
-)

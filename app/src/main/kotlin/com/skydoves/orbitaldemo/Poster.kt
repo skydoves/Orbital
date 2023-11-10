@@ -15,6 +15,8 @@
  */
 package com.skydoves.orbitaldemo
 
+import androidx.compose.ui.graphics.Color
+
 data class Poster(
   val name: String,
   val release: String,
@@ -22,4 +24,5 @@ data class Poster(
   val description: String,
   val poster: String,
   val gif: String,
+  val color: Color,
 )
