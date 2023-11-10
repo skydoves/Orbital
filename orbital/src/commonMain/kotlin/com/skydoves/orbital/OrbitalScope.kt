@@ -15,10 +15,35 @@
  */
 package com.skydoves.orbital
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.UiComposable
 import androidx.compose.ui.layout.LookaheadScope
 
 /**
  * OrbitalScope is a scope that wraps [LookaheadScope] to apply animations.
  */
-public class OrbitalScope internal constructor(lookaheadScope: LookaheadScope) :
+public class OrbitalScope internal constructor(internal val lookaheadScope: LookaheadScope) :
   LookaheadScope by lookaheadScope
+
+/**
+ * OrbitalScope starts a scope in which all layouts scope will receive a lookahead pass preceding
+ * the main measure/layout pass. This lookahead pass will calculate the layout size and position
+ * for all child layouts, and make the lookahead results available in Modifier.intermediateLayout.
+ *
+ * Modifier.intermediateLayout gets invoked in the main pass to allow transient layout changes
+ * in the main pass that gradually morph the layout over the course of multiple frames until it
+ * catches up with lookahead.
+ *
+ * @param content - The child composable to be laid out.
+ */
+@UiComposable
+@Composable
+public fun OrbitalScope(
+  content:
+  @Composable @UiComposable
+  OrbitalScope.() -> Unit,
+) {
+  LookaheadScope {
+    content.invoke(OrbitalScope(this))
+  }
+}

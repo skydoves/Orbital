@@ -13,16 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.skydoves.orbitaldemo
+package com.skydoves.orbital
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.movableContentOf
+import androidx.compose.runtime.remember
 
-data class Poster(
-  val name: String,
-  val release: String,
-  val playtime: String,
-  val description: String,
-  val poster: String,
-  val gif: String,
-  val color: Color,
-)
+/**
+ * Remember a movable Composable content.
+ *
+ * @param key1 A key to re-invalidate the remembered content.
+ * @param content A movable Composable content that will be remembered.
+ */
+@Composable
+public inline fun <T> rememberMovableContentOf(
+  key1: Any? = null,
+  crossinline content: @Composable () -> T,
+): @Composable () -> Unit {
+  return remember(key1 = key1) {
+    movableContentOf { content.invoke() }
+  }
+}

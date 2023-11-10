@@ -1,3 +1,8 @@
+public final class com/skydoves/orbital/AnimateBoundsKt {
+	public static final fun animateBounds (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ZLkotlin/jvm/functions/Function1;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun animateBounds$default (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Modifier;Landroidx/compose/animation/core/FiniteAnimationSpec;Landroidx/compose/animation/core/FiniteAnimationSpec;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
 public final class com/skydoves/orbital/AnimateMovementKt {
 	public static final fun animateMovement (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;)Landroidx/compose/ui/Modifier;
 	public static synthetic fun animateMovement$default (Landroidx/compose/ui/Modifier;Lcom/skydoves/orbital/OrbitalScope;Landroidx/compose/animation/core/FiniteAnimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
@@ -27,7 +32,15 @@ public final class com/skydoves/orbital/OrbitalScope : androidx/compose/ui/layou
 	public fun toLookaheadCoordinates (Landroidx/compose/ui/layout/LayoutCoordinates;)Landroidx/compose/ui/layout/LayoutCoordinates;
 }
 
+public final class com/skydoves/orbital/OrbitalScopeKt {
+	public static final fun OrbitalScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
+}
+
 public final class com/skydoves/orbital/RememberMovablesKt {
 	public static final fun rememberContentWithOrbitalScope (Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/skydoves/orbital/RememberableContentKt {
+	public static final fun rememberMovableContentOf (Ljava/lang/Object;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)Lkotlin/jvm/functions/Function2;
 }
 

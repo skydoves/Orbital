@@ -53,8 +53,9 @@ class MainActivity : ComponentActivity() {
     setContent {
       OrbitalTheme {
         Surface {
+          OrbitalLazyColumnSample()
 //          OrbitalSharedElementTransitionExample()
-          OrbitalMultipleSharedElementTransitionExample()
+//          OrbitalMultipleSharedElementTransitionExample()
 //         OrbitalTransformationExample()
 //         OrbitalMovementExample()
         }
