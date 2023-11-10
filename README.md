@@ -30,7 +30,7 @@ Add the dependency below to your **module**'s `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation("com.github.skydoves:orbital:0.3.1")
+    implementation("com.github.skydoves:orbital:0.3.2")
 }
 ```
 
