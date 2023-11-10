@@ -347,9 +347,9 @@ internal fun OrbitalLazyColumnSample() {
 
 You should bear in mind these three aspects:
 
-- `OrbitalScope`: The `OrbitalScope` function starts a scope, which measures and pre-calculates the layout size and position for all child layouts. Fundamentally, it initiates a reusable Compose node for the given content, which makes all magic things under the hood. You can utilize the `OrbitalScope` in nested ways based on your specific scenarios, as illustrated in the code above.
-- `rememberMovableContentOf`: Utilize this function to remember a movable Composable function, allowing it to be relocated within the Compose tree. All items intended for transformation should be pre-defined using this function, enabling you to display different content based on various situations. All content defined using `rememberMovableContentOf` must be employed within the `OrbitalScope`. 
-- `animateBounds`: This serves as the delegate of the `Modifier` to compute distinct layout sizes based on various situations. It should be used in conjunction with the `rememberMovableContentOf` function.
+- **OrbitalScope**: The `OrbitalScope` function starts a scope, which measures and pre-calculates the layout size and position for all child layouts. Fundamentally, it initiates a reusable Compose node for the given content, which makes all magic things under the hood. You can utilize the `OrbitalScope` in nested ways based on your specific scenarios, as illustrated in the code above.
+- **rememberMovableContentOf**: Utilize this function to remember a movable Composable function, allowing it to be relocated within the Compose tree. All items intended for transformation should be pre-defined using this function, enabling you to display different content based on various situations. All content defined using `rememberMovableContentOf` must be employed within the `OrbitalScope`. 
+- **animateBounds**: This serves as the delegate of the `Modifier` to compute distinct layout sizes based on various situations. It should be used in conjunction with the `rememberMovableContentOf` function.
 
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/Orbital/stargazers)__ for this repository. :star: <br>
