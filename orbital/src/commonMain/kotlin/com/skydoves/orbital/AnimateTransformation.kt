@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.layout.intermediateLayout
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntSize
 
@@ -51,7 +52,7 @@ public fun Modifier.animateTransformation(
   // child will be accessible as a parameter to the measure block.
   with(orbitalScope) {
     this@composed
-      .intermediateLayout { measurable, _, lookaheadSize ->
+      .intermediateLayout { measurable, _ ->
         // When layout changes, the lookahead pass will calculate a new final size for the
         // child modifier. This lookahead size can be used to animate the size
         // change, such that the animation starts from the current size and gradually
