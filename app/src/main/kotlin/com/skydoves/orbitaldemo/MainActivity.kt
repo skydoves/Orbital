@@ -46,17 +46,11 @@ import com.skydoves.orbitaldemo.ui.OrbitalTheme
 
 class MainActivity : ComponentActivity() {
 
-  enum class Screen {
-    A, B;
-  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     setContent {
-
       OrbitalTheme {
-
         OrbitalLazyColumnSample()
       }
     }

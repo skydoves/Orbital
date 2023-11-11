@@ -353,10 +353,14 @@ You should bear in mind these three aspects:
 You can implement transitions between composable functions, as you've learned in the previous functions. The sample code below demonstrates how you can implement a shared element transition between screens A and B by defining shared content:
 
 ```kotlin
+enum class Screen {
+  A, B;
+}
+
 @Composable
 fun ScreenTransitionSample() {
   Orbital {
-    var screen by rememberSaveable { mutableStateOf(MainActivity.Screen.A) }
+    var screen by rememberSaveable { mutableStateOf(Screen.A) }
     val sizeAnim = spring<IntSize>(stiffness = Spring.StiffnessLow)
     val positionAnim = spring<IntOffset>(stiffness = Spring.StiffnessLow)
     val image = rememberMovableContentOf {
@@ -368,7 +372,7 @@ fun ScreenTransitionSample() {
         modifier = Modifier
           .padding(10.dp)
           .animateBounds(
-            modifier = if (screen == MainActivity.Screen.A) {
+            modifier = if (screen == Screen.A) {
               Modifier.size(80.dp)
             } else {
               Modifier.fillMaxWidth()
@@ -409,13 +413,13 @@ fun ScreenTransitionSample() {
       }
     }
 
-    if (screen == MainActivity.Screen.A) {
+    if (screen == Screen.A) {
       ScreenA(
         sharedContent = {
           image()
           title()
         }) {
-        screen = MainActivity.Screen.B
+        screen = Screen.B
       }
     } else {
       ScreenB(
@@ -423,7 +427,7 @@ fun ScreenTransitionSample() {
           image()
           title()
         }) {
-        screen = MainActivity.Screen.A
+        screen = Screen.A
       }
     }
   }
