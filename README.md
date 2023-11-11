@@ -346,6 +346,126 @@ You should bear in mind these three aspects:
 - **rememberMovableContentOf**: Utilize this function to remember a movable Composable function, allowing it to be relocated within the Compose tree. All items intended for transformation should be pre-defined using this function, enabling you to display different content based on various situations. All content defined using `rememberMovableContentOf` must be employed within the `Orbital`. 
 - **animateBounds**: This serves as the delegate of the `Modifier` to compute distinct layout sizes based on various situations. It should be used in conjunction with the `rememberMovableContentOf` function.
 
+### Transition Between Composables
+
+<img src="previews/preview5.gif" width="300px" align="center">
+
+You can implement transitions between composable functions, as you've learned in the previous functions. The sample code below demonstrates how you can implement a shared element transition between screens A and B by defining shared content:
+
+```kotlin
+@Composable
+fun ScreenTransitionSample() {
+  Orbital {
+    var screen by rememberSaveable { mutableStateOf(MainActivity.Screen.A) }
+    val sizeAnim = spring<IntSize>(stiffness = Spring.StiffnessLow)
+    val positionAnim = spring<IntOffset>(stiffness = Spring.StiffnessLow)
+    val image = rememberMovableContentOf {
+      GlideImage(
+        imageModel = { MockUtils.getMockPoster().poster },
+        component = rememberImageComponent {
+          +CrossfadePlugin()
+        },
+        modifier = Modifier
+          .padding(10.dp)
+          .animateBounds(
+            modifier = if (screen == MainActivity.Screen.A) {
+              Modifier.size(80.dp)
+            } else {
+              Modifier.fillMaxWidth()
+            },
+            sizeAnimationSpec = sizeAnim,
+            positionAnimationSpec = positionAnim,
+          )
+          .clip(RoundedCornerShape(12.dp)),
+        imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
+      )
+    }
+
+    val title = rememberMovableContentOf {
+      Column(
+        modifier = Modifier
+          .padding(10.dp)
+          .animateBounds(
+            modifier = Modifier,
+            sizeAnimationSpec = sizeAnim,
+            positionAnimationSpec = positionAnim
+          ),
+      ) {
+        Text(
+          text = MockUtils.getMockPoster().name,
+          fontSize = 18.sp,
+          color = Color.Black,
+          fontWeight = FontWeight.Bold,
+        )
+
+        Text(
+          text = MockUtils.getMockPoster().description,
+          color = Color.Gray,
+          fontSize = 12.sp,
+          maxLines = 3,
+          overflow = TextOverflow.Ellipsis,
+          fontWeight = FontWeight.Bold,
+        )
+      }
+    }
+
+    if (screen == MainActivity.Screen.A) {
+      ScreenA(
+        sharedContent = {
+          image()
+          title()
+        }) {
+        screen = MainActivity.Screen.B
+      }
+    } else {
+      ScreenB(
+        sharedContent = {
+          image()
+          title()
+        }) {
+        screen = MainActivity.Screen.A
+      }
+    }
+  }
+}
+
+@Composable
+private fun ScreenA(
+  sharedContent: @Composable () -> Unit,
+  navigateToScreenB: () -> Unit
+) {
+  Orbital {
+    Row(modifier = Modifier
+      .background(color = Color(0xFFffd7d7))
+      .fillMaxSize()
+      .clickable {
+        navigateToScreenB.invoke()
+      }) {
+      sharedContent()
+    }
+  }
+}
+
+@Composable
+private fun ScreenB(
+  sharedContent: @Composable () -> Unit,
+  navigateToScreenA: () -> Unit
+) {
+  Orbital {
+    Column(modifier = Modifier
+      .background(color = Color(0xFFe3ffd9))
+      .fillMaxSize()
+      .clickable {
+        navigateToScreenA()
+      }) {
+      sharedContent()
+    }
+  }
+}
+```
+
+Unfortunately, you can't achieve this transition with [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation) yet.
+
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/Orbital/stargazers)__ for this repository. :star: <br>
 Also, __[follow me](https://github.com/skydoves)__ on GitHub for my next creations! 🤩
