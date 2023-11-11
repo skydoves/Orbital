@@ -20,7 +20,7 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideInHorizontally
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +30,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -65,72 +64,69 @@ internal fun OrbitalLazyColumnSample() {
         AnimatedVisibility(
           remember { MutableTransitionState(false) }
             .apply { targetState = true },
-          enter = slideInHorizontally { 20 } + fadeIn(),
+          enter = fadeIn(),
         ) {
-          Surface(
-            shape = RoundedCornerShape(10.dp),
-            color = poster.color,
+          Orbital(
             modifier = Modifier
               .fillMaxWidth()
               .clickable {
                 expanded = !expanded
-              },
-          ) {
-            Orbital {
-              val title = rememberMovableContentOf {
-                Column(
-                  modifier = Modifier
-                    .padding(10.dp)
-                    .animateBounds(Modifier),
-                ) {
-                  Text(
-                    text = poster.name,
-                    fontSize = 18.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                  )
-
-                  Text(
-                    text = poster.description,
-                    color = Color.Gray,
-                    fontSize = 12.sp,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.Bold,
-                  )
-                }
               }
-              val image = rememberMovableContentOf {
-                GlideImage(
-                  imageModel = { poster.poster },
-                  component = rememberImageComponent {
-                    +CrossfadePlugin()
-                  },
-                  modifier = Modifier
-                    .padding(10.dp)
-                    .animateBounds(
-                      if (expanded) {
-                        Modifier.fillMaxWidth()
-                      } else {
-                        Modifier.size(80.dp)
-                      },
-                      spring(stiffness = Spring.StiffnessLow),
-                    )
-                    .clip(RoundedCornerShape(5.dp)),
-                  imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
+              .background(color = poster.color, shape = RoundedCornerShape(10.dp)),
+          ) {
+            val title = rememberMovableContentOf {
+              Column(
+                modifier = Modifier
+                  .padding(10.dp)
+                  .animateBounds(Modifier),
+              ) {
+                Text(
+                  text = poster.name,
+                  fontSize = 18.sp,
+                  color = Color.Black,
+                  fontWeight = FontWeight.Bold,
+                )
+
+                Text(
+                  text = poster.description,
+                  color = Color.Gray,
+                  fontSize = 12.sp,
+                  maxLines = 3,
+                  overflow = TextOverflow.Ellipsis,
+                  fontWeight = FontWeight.Bold,
                 )
               }
+            }
+            val image = rememberMovableContentOf {
+              GlideImage(
+                imageModel = { poster.poster },
+                component = rememberImageComponent {
+                  +CrossfadePlugin()
+                },
+                modifier = Modifier
+                  .padding(10.dp)
+                  .animateBounds(
+                    if (expanded) {
+                      Modifier.fillMaxWidth()
+                    } else {
+                      Modifier.size(80.dp)
+                    },
+                    spring(stiffness = Spring.StiffnessLow),
+                  )
+                  .clip(RoundedCornerShape(5.dp)),
+                imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
+              )
+            }
 
-              if (expanded) {
-                Column {
-                  image()
-                  title()
-                }
-              } else {
-                Row {
-                  image()
-                  title()
-                }
+            if (expanded) {
+              Column {
+                image()
+                title()
+              }
+            } else {
+              Row {
+                image()
+                title()
               }
             }
           }

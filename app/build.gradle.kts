@@ -72,6 +72,7 @@ dependencies {
   implementation(libs.androidx.compose.material)
   implementation(libs.androidx.compose.constraintlayout)
   implementation(libs.androidx.compose.material.iconsExtended)
+  implementation(libs.androidx.compose.navigation)
 
   implementation(libs.landscapist.glide)
   implementation(libs.landscapist.placeholder)

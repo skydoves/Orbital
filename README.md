@@ -259,7 +259,7 @@ The provided code example illustrates the implementation of shared element trans
 
 ```kotlin
 @Composable
-internal fun OrbitalLazyColumnSample() {
+fun OrbitalLazyColumnSample() {
   val mocks = MockUtils.getMockPosters()
 
   Orbital {
@@ -269,72 +269,67 @@ internal fun OrbitalLazyColumnSample() {
         AnimatedVisibility(
           remember { MutableTransitionState(false) }
             .apply { targetState = true },
-          enter = slideInHorizontally { 20 } + fadeIn(),
+          enter = fadeIn(),
         ) {
-          Surface(
-            shape = RoundedCornerShape(10.dp),
-            color = poster.color,
-            modifier = Modifier
-              .fillMaxWidth()
-              .clickable {
-                expanded = !expanded
-              },
-          ) {
-            Orbital {
-              val title = rememberMovableContentOf {
-                Column(
-                  modifier = Modifier
-                    .padding(10.dp)
-                    .animateBounds(Modifier),
-                ) {
-                  Text(
-                    text = poster.name,
-                    fontSize = 18.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                  )
+          Orbital(modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+              expanded = !expanded
+            }
+            .background(color = poster.color, shape = RoundedCornerShape(10.dp))) {
+            val title = rememberMovableContentOf {
+              Column(
+                modifier = Modifier
+                  .padding(10.dp)
+                  .animateBounds(Modifier),
+              ) {
+                Text(
+                  text = poster.name,
+                  fontSize = 18.sp,
+                  color = Color.Black,
+                  fontWeight = FontWeight.Bold,
+                )
 
-                  Text(
-                    text = poster.description,
-                    color = Color.Gray,
-                    fontSize = 12.sp,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.Bold,
-                  )
-                }
-              }
-              val image = rememberMovableContentOf {
-                GlideImage(
-                  imageModel = { poster.poster },
-                  component = rememberImageComponent {
-                    +CrossfadePlugin()
-                  },
-                  modifier = Modifier
-                    .padding(10.dp)
-                    .animateBounds(
-                      if (expanded) {
-                        Modifier.fillMaxWidth()
-                      } else {
-                        Modifier.size(80.dp)
-                      },
-                      spring(stiffness = Spring.StiffnessLow),
-                    )
-                    .clip(RoundedCornerShape(5.dp)),
-                  imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
+                Text(
+                  text = poster.description,
+                  color = Color.Gray,
+                  fontSize = 12.sp,
+                  maxLines = 3,
+                  overflow = TextOverflow.Ellipsis,
+                  fontWeight = FontWeight.Bold,
                 )
               }
+            }
+            val image = rememberMovableContentOf {
+              GlideImage(
+                imageModel = { poster.poster },
+                component = rememberImageComponent {
+                  +CrossfadePlugin()
+                },
+                modifier = Modifier
+                  .padding(10.dp)
+                  .animateBounds(
+                    if (expanded) {
+                      Modifier.fillMaxWidth()
+                    } else {
+                      Modifier.size(80.dp)
+                    },
+                    spring(stiffness = Spring.StiffnessLow),
+                  )
+                  .clip(RoundedCornerShape(5.dp)),
+                imageOptions = ImageOptions(requestSize = IntSize(600, 600)),
+              )
+            }
 
-              if (expanded) {
-                Column {
-                  image()
-                  title()
-                }
-              } else {
-                Row {
-                  image()
-                  title()
-                }
+            if (expanded) {
+              Column {
+                image()
+                title()
+              }
+            } else {
+              Row {
+                image()
+                title()
               }
             }
           }

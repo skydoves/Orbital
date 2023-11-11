@@ -10,6 +10,7 @@ androidxComposeCompiler = "1.5.4"
 androidxComposeConstraintLayout = "1.0.1"
 androidxActivity = "1.8.0"
 androidxTest = "1.5.2"
+androidxNavigation = "2.7.5"
 coroutines = "1.7.3"
 landscapist = "2.2.12"
 baselineProfiles = "1.3.1"
@@ -40,6 +41,7 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-animation = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
