@@ -16,11 +16,9 @@ public final class com/skydoves/orbitaldemo/ComposableSingletons$MainActivityKt 
 	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ComposableSingletons$MainActivityKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public static field lambda-2 Lkotlin/jvm/functions/Function2;
-	public static field lambda-3 Lkotlin/jvm/functions/Function2;
 	public fun <init> ()V
 	public final fun getLambda-1$app_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda-2$app_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-3$app_release ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/skydoves/orbitaldemo/ComposableSingletons$OrbitalLazyColumnSampleKt {
@@ -28,6 +26,15 @@ public final class com/skydoves/orbitaldemo/ComposableSingletons$OrbitalLazyColu
 	public static field lambda-1 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$app_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/skydoves/orbitaldemo/ComposableSingletons$ScreenTransitionSampleKt {
+	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ComposableSingletons$ScreenTransitionSampleKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public static field lambda-2 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$app_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$app_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/skydoves/orbitaldemo/ItemUtils {
@@ -74,6 +81,18 @@ public final class com/skydoves/orbitaldemo/Poster {
 
 public final class com/skydoves/orbitaldemo/PosterDetailsKt {
 	public static final fun PosterDetails (Lcom/skydoves/orbitaldemo/Poster;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/skydoves/orbitaldemo/Screen : java/lang/Enum {
+	public static final field A Lcom/skydoves/orbitaldemo/Screen;
+	public static final field B Lcom/skydoves/orbitaldemo/Screen;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/skydoves/orbitaldemo/Screen;
+	public static fun values ()[Lcom/skydoves/orbitaldemo/Screen;
+}
+
+public final class com/skydoves/orbitaldemo/ScreenTransitionSampleKt {
+	public static final fun ScreenTransitionSample (Landroidx/compose/runtime/Composer;I)V
 }
 
 public final class com/skydoves/orbitaldemo/ui/ColorsKt {
