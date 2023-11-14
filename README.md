@@ -21,6 +21,11 @@
 <img src="previews/preview3.gif" width="270"/>
 </p>
 
+<p align="center">
+<img src="previews/preview4.gif" width="270"/>
+<img src="previews/preview5.gif" width="270"/>
+</p>
+
 ## Download
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orbital.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orbital%22)
 
