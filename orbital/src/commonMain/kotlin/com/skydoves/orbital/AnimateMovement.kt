@@ -27,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.layout.findRootCoordinates
 import androidx.compose.ui.layout.intermediateLayout
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.unit.IntOffset
@@ -61,7 +62,7 @@ public fun Modifier.animateMovement(
 
         // localLookaheadPositionOf returns the *target* position of this
         // modifier in the LookaheadLayout's local coordinates.
-        val targetOffset = layoutCoordinates.parentLayoutCoordinates!!
+        val targetOffset = layoutCoordinates.findRootCoordinates()
           .localLookaheadPositionOf(
             layoutCoordinates,
           )
@@ -70,7 +71,7 @@ public fun Modifier.animateMovement(
 
         // localPositionOf returns the *current* position of this
         // modifier in the LookaheadLayout's local coordinates.
-        placementOffset = layoutCoordinates.parentLayoutCoordinates!!
+        placementOffset = layoutCoordinates.findRootCoordinates()
           .localPositionOf(
             layoutCoordinates, Offset.Zero,
           )
