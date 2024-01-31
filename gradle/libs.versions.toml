@@ -1,12 +1,12 @@
 [versions]
-agp = "8.2.0"
+agp = "8.2.2"
 dokka = "1.9.10"
 nexusPlugin = "0.26.0"
-kotlin = "1.9.21"
-kotlinBinaryCompatibility = "0.13.2"
+kotlin = "1.9.22"
+kotlinBinaryCompatibility = "0.14.0"
 jvmTarget = "11"
-androidxComposeBom = "2023.10.01"
-androidxComposeCompiler = "1.5.7"
+androidxComposeBom = "2024.01.00"
+androidxComposeCompiler = "1.5.8"
 androidxComposeConstraintLayout = "1.0.1"
 androidxActivity = "1.8.0"
 androidxTest = "1.5.2"
@@ -18,8 +18,8 @@ uiAutomator = "2.3.0-alpha05"
 spotless = "6.21.0"
 junit = "1.1.5"
 espresso-core = "3.5.1"
-androidxMacroBenchmark = "1.2.2"
-jetbrains-compose = "1.5.11"
+androidxMacroBenchmark = "1.2.3"
+jetbrains-compose = "1.5.12"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
