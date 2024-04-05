@@ -70,6 +70,9 @@ import androidx.compose.ui.unit.sp
 import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.delay
 
+/**
+ * https://android-review.googlesource.com/c/platform/frameworks/support/+/2833541
+ */
 @Composable
 fun ContainerTransformDemo(model: MyModel = remember { MyModel().apply { selected = items[1] } }) {
   SharedTransitionLayout {
