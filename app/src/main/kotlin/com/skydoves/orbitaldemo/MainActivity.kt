@@ -13,28 +13,53 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:OptIn(ExperimentalSharedTransitionApi::class)
+
 package com.skydoves.orbitaldemo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.core.SpringSpec
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.orbital.Orbital
@@ -51,10 +76,119 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       OrbitalTheme {
-        OrbitalLazyColumnSample()
+        ContainerTransformDemo()
       }
     }
   }
+
+  @Composable
+  fun NavigationComposeShared() {
+    SharedTransitionLayout {
+      val listAnimals = remember {
+        listOf(
+          Animal("Lion", "", R.drawable.poster),
+          Animal("Lizard", "", R.drawable.poster),
+          Animal("Elephant", "", R.drawable.poster),
+          Animal("Penguin", "", R.drawable.poster),
+        )
+      }
+      val boundsTransform = { _: Rect, _: Rect -> tween<Rect>(1400) }
+
+      val navController = rememberNavController()
+      NavHost(navController = navController, startDestination = "home") {
+        composable("home") {
+          LazyColumn(
+            modifier = Modifier
+              .background(Color.Black)
+              .fillMaxSize()
+              .padding(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+          ) {
+            itemsIndexed(listAnimals) { index, item ->
+              Row(
+                Modifier.clickable {
+                  navController.navigate("details/$index")
+                },
+              ) {
+                Spacer(modifier = Modifier.width(8.dp))
+                Image(
+                  painterResource(id = item.image),
+                  contentDescription = item.description,
+                  contentScale = ContentScale.Crop,
+                  modifier = Modifier
+                    .size(100.dp)
+                    .sharedElement(
+                      rememberSharedContentState(key = "image-$index"),
+                      animatedVisibilityScope = this@composable,
+                      boundsTransform = boundsTransform,
+                    ),
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                  item.name,
+                  fontSize = 18.sp,
+                  modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .sharedElement(
+                      rememberSharedContentState(key = "text-$index"),
+                      animatedVisibilityScope = this@composable,
+                      boundsTransform = boundsTransform,
+                    ),
+                )
+              }
+            }
+          }
+        }
+        composable(
+          "details/{animal}",
+          arguments = listOf(navArgument("animal") { type = NavType.IntType }),
+        ) { backStackEntry ->
+          val animalId = backStackEntry.arguments?.getInt("animal")
+          val animal = listAnimals[animalId!!]
+          Column(
+            Modifier
+              .fillMaxSize()
+              .background(Color.Black)
+              .clickable {
+                navController.navigate("home")
+              },
+          ) {
+            Image(
+              painterResource(id = animal.image),
+              contentDescription = animal.description,
+              contentScale = ContentScale.Crop,
+              modifier = Modifier
+                .aspectRatio(1f)
+                .fillMaxWidth()
+                .sharedElement(
+                  rememberSharedContentState(key = "image-$animalId"),
+                  animatedVisibilityScope = this@composable,
+                  boundsTransform = boundsTransform,
+                ),
+            )
+            Text(
+              animal.name,
+              fontSize = 18.sp,
+              modifier =
+              Modifier
+                .fillMaxWidth()
+                .sharedElement(
+                  rememberSharedContentState(key = "text-$animalId"),
+                  animatedVisibilityScope = this@composable,
+                  boundsTransform = boundsTransform,
+                ),
+            )
+          }
+        }
+      }
+    }
+  }
+
+  data class Animal(
+    val name: String,
+    val description: String,
+    @DrawableRes val image: Int,
+  )
 
   @Composable
   private fun OrbitalTransformationExample() {

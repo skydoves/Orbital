@@ -65,7 +65,8 @@ dependencies {
 
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.activity.compose)
-  implementation(libs.androidx.compose.ui)
+  implementation("androidx.compose.animation:animation:1.7.0-SNAPSHOT")
+  implementation("androidx.compose.ui:ui:1.7.0-SNAPSHOT")
   implementation(libs.androidx.compose.ui.tooling)
   implementation(libs.androidx.compose.foundation)
   implementation(libs.androidx.compose.runtime)
