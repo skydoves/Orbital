@@ -28,6 +28,13 @@ plugins {
 subprojects {
   apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
 
+  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
+    kotlinOptions.freeCompilerArgs += listOf(
+      "-Xcontext-receivers"
+    )
+  }
+
   configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
       target("**/*.kt")
