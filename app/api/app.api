@@ -12,13 +12,22 @@ public final class com/skydoves/orbitaldemo/BuildConfig {
 	public fun <init> ()V
 }
 
+public final class com/skydoves/orbitaldemo/ComposableSingletons$ContainerTransformDemoKt {
+	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ComposableSingletons$ContainerTransformDemoKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$app_release ()Lkotlin/jvm/functions/Function2;
+}
+
 public final class com/skydoves/orbitaldemo/ComposableSingletons$MainActivityKt {
 	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ComposableSingletons$MainActivityKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public static field lambda-3 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$app_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda-2$app_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-3$app_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/skydoves/orbitaldemo/ComposableSingletons$OrbitalLazyColumnSampleKt {
@@ -37,15 +46,59 @@ public final class com/skydoves/orbitaldemo/ComposableSingletons$ScreenTransitio
 	public final fun getLambda-2$app_release ()Lkotlin/jvm/functions/Function3;
 }
 
+public final class com/skydoves/orbitaldemo/ContainerTransformDemoKt {
+	public static final fun ContainerTransformDemo (Lcom/skydoves/orbitaldemo/MyModel;Landroidx/compose/runtime/Composer;II)V
+	public static final fun DetailView (Landroidx/compose/animation/AnimatedVisibilityScope;Landroidx/compose/animation/SharedTransitionScope;Lcom/skydoves/orbitaldemo/MyModel;Lcom/skydoves/orbitaldemo/Kitty;Lcom/skydoves/orbitaldemo/Kitty;Landroidx/compose/runtime/Composer;I)V
+	public static final fun Details (Landroidx/compose/animation/SharedTransitionScope;Lcom/skydoves/orbitaldemo/Kitty;Landroidx/compose/runtime/Composer;I)V
+	public static final fun GridView (Landroidx/compose/animation/AnimatedVisibilityScope;Landroidx/compose/animation/SharedTransitionScope;Lcom/skydoves/orbitaldemo/MyModel;Landroidx/compose/runtime/Composer;I)V
+	public static final fun KittyItem (Landroidx/compose/animation/AnimatedVisibilityScope;Landroidx/compose/animation/SharedTransitionScope;Lcom/skydoves/orbitaldemo/Kitty;Landroidx/compose/runtime/Composer;I)V
+	public static final fun SearchBar (Landroidx/compose/runtime/Composer;I)V
+}
+
 public final class com/skydoves/orbitaldemo/ItemUtils {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/skydoves/orbitaldemo/ItemUtils;
 	public final fun getUrls ()Ljava/util/List;
 }
 
+public final class com/skydoves/orbitaldemo/Kitty {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
+	public final fun copy (Ljava/lang/String;ILjava/lang/String;I)Lcom/skydoves/orbitaldemo/Kitty;
+	public static synthetic fun copy$default (Lcom/skydoves/orbitaldemo/Kitty;Ljava/lang/String;ILjava/lang/String;IILjava/lang/Object;)Lcom/skydoves/orbitaldemo/Kitty;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBreed ()Ljava/lang/String;
+	public final fun getId ()I
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPhotoResId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/skydoves/orbitaldemo/MainActivity : androidx/activity/ComponentActivity {
 	public static final field $stable I
 	public fun <init> ()V
+	public final fun NavigationComposeShared (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/skydoves/orbitaldemo/MainActivity$Animal {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()I
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;I)Lcom/skydoves/orbitaldemo/MainActivity$Animal;
+	public static synthetic fun copy$default (Lcom/skydoves/orbitaldemo/MainActivity$Animal;Ljava/lang/String;Ljava/lang/String;IILjava/lang/Object;)Lcom/skydoves/orbitaldemo/MainActivity$Animal;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getImage ()I
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/skydoves/orbitaldemo/MockUtils {
@@ -53,6 +106,14 @@ public final class com/skydoves/orbitaldemo/MockUtils {
 	public static final field INSTANCE Lcom/skydoves/orbitaldemo/MockUtils;
 	public final fun getMockPoster ()Lcom/skydoves/orbitaldemo/Poster;
 	public final fun getMockPosters ()Ljava/util/List;
+}
+
+public final class com/skydoves/orbitaldemo/MyModel {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getItems ()Ljava/util/List;
+	public final fun getSelected ()Lcom/skydoves/orbitaldemo/Kitty;
+	public final fun setSelected (Lcom/skydoves/orbitaldemo/Kitty;)V
 }
 
 public final class com/skydoves/orbitaldemo/Poster {
