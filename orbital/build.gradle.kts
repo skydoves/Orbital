@@ -1,4 +1,5 @@
 import com.skydoves.orbital.Configuration
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -40,6 +41,22 @@ kotlin {
 
   js(IR) {
     browser()
+  }
+
+  @OptIn(ExperimentalWasmDsl::class)
+  wasmJs {
+    browser {
+      testTask {
+        enabled = false
+      }
+    }
+    nodejs {
+      testTask {
+        enabled = false
+      }
+    }
+    binaries.executable()
+    binaries.library()
   }
 
   applyDefaultHierarchyTemplate()
