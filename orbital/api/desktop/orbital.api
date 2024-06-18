@@ -26,9 +26,7 @@ public final class com/skydoves/orbital/OrbitalKt {
 public final class com/skydoves/orbital/OrbitalScope : androidx/compose/ui/layout/LookaheadScope {
 	public static final field $stable I
 	public fun getLookaheadScopeCoordinates (Landroidx/compose/ui/layout/Placeable$PlacementScope;)Landroidx/compose/ui/layout/LayoutCoordinates;
-	public fun intermediateLayout (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function4;)Landroidx/compose/ui/Modifier;
 	public fun localLookaheadPositionOf-dBAh8RU (Landroidx/compose/ui/layout/LayoutCoordinates;Landroidx/compose/ui/layout/LayoutCoordinates;)J
-	public fun onPlaced (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;)Landroidx/compose/ui/Modifier;
 	public fun toLookaheadCoordinates (Landroidx/compose/ui/layout/LayoutCoordinates;)Landroidx/compose/ui/layout/LayoutCoordinates;
 }
 
