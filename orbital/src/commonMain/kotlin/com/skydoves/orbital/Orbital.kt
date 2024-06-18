@@ -19,14 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.LookaheadLayout
 import androidx.compose.ui.layout.LookaheadScope
 import androidx.compose.ui.layout.MeasurePolicy
 import kotlin.math.max
 
 /**
  * Orbital is a layout that measures and placements internally, and collocates the measured layouts
- * on the [LookaheadLayout] continuously. You can allows the [content] to run animations such as
+ * on the [LookaheadScope] continuously. You can allows the [content] to run animations such as
  * [animateMovement], [animateTransformation], and [animateSharedElementTransition] on the [OrbitalScope].
  *
  * @param modifier [Modifier] used to adjust the layout or drawing content.
@@ -53,7 +52,7 @@ public fun Orbital(
 
 /**
  * Orbital is a layout that measures and placements internally, and collocates the measured layouts
- * on the [LookaheadLayout] continuously. You can allows the [onStartContent] and [onTransformedContent]
+ * on the [LookaheadScope] continuously. You can allows the [onStartContent] and [onTransformedContent]
  * to run animations such as [animateMovement], [animateTransformation], and [animateSharedElementTransition]
  * on the [OrbitalScope].
  *

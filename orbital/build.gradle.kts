@@ -5,6 +5,7 @@ plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.multiplatform.get().pluginId)
   id(libs.plugins.jetbrains.compose.get().pluginId)
+  id(libs.plugins.compose.compiler.get().pluginId)
   id(libs.plugins.nexus.plugin.get().pluginId)
   id(libs.plugins.baseline.profile.get().pluginId)
 }
@@ -74,10 +75,6 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
   }
 
   packaging {

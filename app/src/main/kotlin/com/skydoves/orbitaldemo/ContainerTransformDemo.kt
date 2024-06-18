@@ -274,7 +274,7 @@ fun GridView(model: MyModel) {
 class MyModel {
   val items = mutableListOf(
     Kitty("Waffle", R.drawable.poster, "Bulbasaur", 0),
-    Kitty("油条", R.drawable.poster, "ivysaur", 1),
+    Kitty("Bubble", R.drawable.poster, "ivysaur", 1),
     Kitty("Cowboy", R.drawable.poster, "Venusaur", 2),
     Kitty("Pepper", R.drawable.poster, "charmander", 3),
     Kitty("Unknown", R.drawable.poster, "charmeleon", 4),
