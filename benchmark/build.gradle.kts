@@ -1,21 +1,19 @@
 import com.skydoves.orbital.Configuration
 
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
   id(libs.plugins.android.test.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.compose.compiler.get().pluginId)
   id(libs.plugins.baseline.profile.get().pluginId)
 }
 
 android {
-    namespace = "com.skydoves.orbital.benchmark"
-    compileSdk = Configuration.compileSdk
+  namespace = "com.skydoves.orbital.benchmark"
+  compileSdk = Configuration.compileSdk
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+  }
 
   kotlinOptions {
     jvmTarget = libs.versions.jvmTarget.get()
