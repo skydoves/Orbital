@@ -39,8 +39,17 @@ kotlin {
   macosX64()
   macosArm64()
 
-  js(IR) {
+  js {
     browser()
+    nodejs {
+      testTask {
+        useMocha {
+          timeout = "60s"
+        }
+      }
+    }
+    binaries.executable()
+    binaries.library()
   }
 
   @OptIn(ExperimentalWasmDsl::class)
@@ -75,6 +84,7 @@ kotlin {
   }
 
   explicitApi()
+  applyKotlinJsImplicitDependencyWorkaround()
 }
 
 android {
@@ -123,5 +133,44 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
       "-Xexplicit-api=strict",
       "-Xopt-in=androidx.compose.ui.ExperimentalComposeUiApi"
     )
+  }
+}
+
+// https://youtrack.jetbrains.com/issue/KT-56025
+fun Project.applyKotlinJsImplicitDependencyWorkaround() {
+  tasks {
+    val configureJs: Task.() -> Unit = {
+      dependsOn(named("jsDevelopmentLibraryCompileSync"))
+      dependsOn(named("jsDevelopmentExecutableCompileSync"))
+      dependsOn(named("jsProductionLibraryCompileSync"))
+      dependsOn(named("jsProductionExecutableCompileSync"))
+      dependsOn(named("jsTestTestDevelopmentExecutableCompileSync"))
+
+      dependsOn(getByPath(":orbital:jsDevelopmentLibraryCompileSync"))
+      dependsOn(getByPath(":orbital:jsDevelopmentExecutableCompileSync"))
+      dependsOn(getByPath(":orbital:jsProductionLibraryCompileSync"))
+      dependsOn(getByPath(":orbital:jsProductionExecutableCompileSync"))
+      dependsOn(getByPath(":orbital:jsTestTestDevelopmentExecutableCompileSync"))
+    }
+    named("jsBrowserProductionWebpack").configure(configureJs)
+    named("jsBrowserProductionLibraryDistribution").configure(configureJs)
+    named("jsNodeProductionLibraryDistribution").configure(configureJs)
+
+    val configureWasmJs: Task.() -> Unit = {
+      dependsOn(named("wasmJsDevelopmentLibraryCompileSync"))
+      dependsOn(named("wasmJsDevelopmentExecutableCompileSync"))
+      dependsOn(named("wasmJsProductionLibraryCompileSync"))
+      dependsOn(named("wasmJsProductionExecutableCompileSync"))
+      dependsOn(named("wasmJsTestTestDevelopmentExecutableCompileSync"))
+
+      dependsOn(getByPath(":orbital:wasmJsDevelopmentLibraryCompileSync"))
+      dependsOn(getByPath(":orbital:wasmJsDevelopmentExecutableCompileSync"))
+      dependsOn(getByPath(":orbital:wasmJsProductionLibraryCompileSync"))
+      dependsOn(getByPath(":orbital:wasmJsProductionExecutableCompileSync"))
+      dependsOn(getByPath(":orbital:wasmJsTestTestDevelopmentExecutableCompileSync"))
+    }
+    named("wasmJsBrowserProductionWebpack").configure(configureWasmJs)
+    named("wasmJsBrowserProductionLibraryDistribution").configure(configureWasmJs)
+    named("wasmJsNodeProductionLibraryDistribution").configure(configureWasmJs)
   }
 }
